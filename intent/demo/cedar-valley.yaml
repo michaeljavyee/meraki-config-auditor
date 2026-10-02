@@ -1,0 +1,136 @@
+# Declared configuration for the fictional Cedar Valley Logistics demo org.
+#
+# This is the approved network design, as code. `python -m src.plan --demo`
+# compares it with the bundled demo fixtures and prints what would have to
+# change for each site to match.
+#
+# Only what's declared here is managed. Desk ports, PoE settings and so on are
+# left out on purpose: you can adopt config-as-code one section at a time,
+# starting with what breaks things when it drifts (uplinks, firewall, SSIDs).
+#
+# Shared fragments are YAML anchors (&name / *name); `definitions` is ignored
+# by the tool and exists only so they have somewhere to live.
+
+definitions:
+  firewall: &standard_firewall
+    - comment: Guest cannot reach internal
+      policy: deny
+      protocol: any
+      srcCidr: VLAN(30).*
+      destCidr: 10.0.0.0/8
+      syslogEnabled: true
+    - comment: Cameras cannot reach corp
+      policy: deny
+      protocol: any
+      srcCidr: VLAN(40).*
+      destCidr: VLAN(10).*
+      syslogEnabled: true
+    - comment: Corp to camera local streams
+      policy: allow
+      protocol: tcp
+      srcCidr: VLAN(10).*
+      destCidr: VLAN(40).*
+      destPort: "443"
+
+  corp_ssid: &corp_ssid
+    name: CVL-Corp
+    enabled: true
+    authMode: 8021x-radius
+    encryptionMode: wpa-eap
+    wpaEncryptionMode: WPA2 only
+    ipAssignmentMode: Bridge mode
+    useVlanTagging: true
+    defaultVlanId: 10
+    bandSelection: Dual band operation with Band Steering
+
+  guest_ssid: &guest_ssid
+    name: CVL-Guest
+    enabled: true
+    authMode: psk
+    encryptionMode: wpa
+    wpaEncryptionMode: WPA2 only
+    ipAssignmentMode: Bridge mode
+    useVlanTagging: true
+    defaultVlanId: 30
+    bandSelection: Dual band operation with Band Steering
+
+  uplink_trunk: &uplink_trunk
+    type: trunk
+    vlan: 1
+    allowedVlans: 1,10,20,30,40
+    tags: [uplink]
+
+  camera_port: &camera_port
+    type: access
+    vlan: 40
+    tags: [camera]
+
+networks:
+
+  HQ:
+    appliance_vlans:
+      1:  {name: Management, subnet: 10.10.1.0/24,  applianceIp: 10.10.1.1}
+      10: {name: Corp,       subnet: 10.10.10.0/24, applianceIp: 10.10.10.1}
+      20: {name: Voice,      subnet: 10.10.20.0/24, applianceIp: 10.10.20.1}
+      30: {name: Guest,      subnet: 10.10.30.0/24, applianceIp: 10.10.30.1}
+      40: {name: Cameras,    subnet: 10.10.40.0/24, applianceIp: 10.10.40.1}
+    l3_firewall_rules: *standard_firewall
+    switch_ports:
+      SW-HQ-CORE:
+        "5":  {<<: *camera_port, name: Lobby camera}
+        "48": {<<: *uplink_trunk, name: Uplink MX-HQ}
+      SW-HQ-IDF1:
+        "24": {<<: *uplink_trunk, name: Uplink SW-HQ-CORE}
+    ssids:
+      0: *corp_ssid
+      1: *guest_ssid
+
+  Depot-East:
+    appliance_vlans:
+      1:  {name: Management, subnet: 10.20.1.0/24,  applianceIp: 10.20.1.1}
+      10: {name: Corp,       subnet: 10.20.10.0/24, applianceIp: 10.20.10.1}
+      20: {name: Voice,      subnet: 10.20.20.0/24, applianceIp: 10.20.20.1}
+      30: {name: Guest,      subnet: 10.20.30.0/24, applianceIp: 10.20.30.1}
+      40: {name: Cameras,    subnet: 10.20.40.0/24, applianceIp: 10.20.40.1}
+    l3_firewall_rules: *standard_firewall
+    switch_ports:
+      SW-EAST-CORE:
+        "24": {<<: *uplink_trunk, name: Uplink MX-EAST}
+      SW-EAST-IDF1:
+        "1": {<<: *camera_port, name: Gate camera}
+        "2": {<<: *camera_port, name: Fuel island camera}
+        "8": {<<: *uplink_trunk, name: Uplink SW-EAST-CORE}
+    ssids:
+      0: *corp_ssid
+      1: *guest_ssid
+
+  Depot-West:
+    # Every VLAN not listed here is planned for deletion: this site's VLANs
+    # are managed exclusively from this file.
+    exclusive: [appliance_vlans]
+    appliance_vlans:
+      1:  {name: Management, subnet: 10.30.1.0/24,  applianceIp: 10.30.1.1}
+      10: {name: Corp,       subnet: 10.30.10.0/24, applianceIp: 10.30.10.1}
+      20: {name: Voice,      subnet: 10.30.20.0/24, applianceIp: 10.30.20.1}
+      30: {name: Guest,      subnet: 10.30.30.0/24, applianceIp: 10.30.30.1}
+      40: {name: Cameras,    subnet: 10.30.40.0/24, applianceIp: 10.30.40.1}
+      # Approved, not yet built: badge readers for the yard gate (CHG-1042).
+      50: {name: Badge readers, subnet: 10.30.50.0/24, applianceIp: 10.30.50.1}
+    l3_firewall_rules: *standard_firewall
+    switch_ports:
+      SW-WEST-CORE:
+        "24": {<<: *uplink_trunk, name: Uplink MX-WEST}
+      SW-WEST-IDF1:
+        "1": {<<: *camera_port, name: Yard camera 1}
+        "2": {<<: *camera_port, name: Yard camera 2}
+        "3": {<<: *camera_port, name: Yard camera 3}
+        "4": {<<: *camera_port, name: Yard camera 4}
+        "5": {<<: *camera_port, name: Yard camera 5}
+        "8": {<<: *uplink_trunk, name: Uplink}
+    ssids:
+      0: *corp_ssid
+      1: *guest_ssid
+      # The installers' SSID: kept declared, and declared off.
+      2:
+        name: CVL-Install
+        enabled: false
