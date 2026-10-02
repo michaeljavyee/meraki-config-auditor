@@ -1,0 +1,89 @@
+# Network standard for the fictional Cedar Valley Logistics demo org.
+#
+# This is the file `--demo` audits against, and the template to copy for a
+# real organization. Every field is documented in docs/baseline-format.md.
+#
+# The baseline describes what *should* be true. The audit reports where the
+# live configuration disagrees, and how much that matters.
+
+name: Cedar Valley Logistics network standard
+version: "2026.09"
+
+# Limit the audit to networks carrying one of these tags. Empty = every network.
+scope:
+  network_tags: []
+
+# Approved firmware per product type. Devices behind, ahead of, or mixed with
+# peers are reported by the firmware check.
+firmware:
+  appliance: wired-18-2-11
+  switch: switch-17-1-4
+  wireless: wireless-30-7
+  camera: camera-5-3
+
+# VLAN IDs and the role each plays. Used in findings so "VLAN 40" reads as
+# "VLAN 40 (cameras)".
+vlans:
+  1: management
+  10: corp
+  20: voice
+  30: guest
+  40: cameras
+
+trunks:
+  # Every uplink trunk must carry these VLANs, whether or not anything on the
+  # switch uses them today. A VLAN missing here is a latent outage: it works
+  # until the day someone plugs the first camera into that closet.
+  required_vlans: [1, 10, 20, 30, 40]
+  native_vlan: 1
+  # How to recognise an uplink. A port matching either rule is treated as one.
+  uplink_port_tags: [uplink]
+  uplink_name_patterns: [uplink]
+
+firewall:
+  # MX L3 outbound rules, in order, excluding the implicit default rule.
+  # VLAN(n).* is Meraki's own object syntax for "the subnet of VLAN n on this
+  # appliance", which lets one baseline describe every site even though each
+  # site uses a different address range.
+  l3_rules:
+    - comment: Guest cannot reach internal
+      policy: deny
+      protocol: any
+      srcCidr: VLAN(30).*
+      srcPort: Any
+      destCidr: 10.0.0.0/8
+      destPort: Any
+    - comment: Cameras cannot reach corp
+      policy: deny
+      protocol: any
+      srcCidr: VLAN(40).*
+      srcPort: Any
+      destCidr: VLAN(10).*
+      destPort: Any
+    - comment: Corp to camera local streams
+      policy: allow
+      protocol: tcp
+      srcCidr: VLAN(10).*
+      srcPort: Any
+      destCidr: VLAN(40).*
+      destPort: "443"
+
+# SSIDs every wireless network should broadcast, and how. Only the fields
+# listed are compared. An enabled SSID that isn't listed here is reported too.
+ssids:
+  - name: CVL-Corp
+    authMode: 8021x-radius
+    encryptionMode: wpa-eap
+    wpaEncryptionMode: WPA2 only
+    ipAssignmentMode: Bridge mode
+    useVlanTagging: true
+    defaultVlanId: 10
+    bandSelection: Dual band operation with Band Steering
+  - name: CVL-Guest
+    authMode: psk
+    encryptionMode: wpa
+    wpaEncryptionMode: WPA2 only
+    ipAssignmentMode: Bridge mode
+    useVlanTagging: true
+    defaultVlanId: 30
+    bandSelection: Dual band operation with Band Steering
