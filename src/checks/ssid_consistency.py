@@ -80,7 +80,7 @@ def run(context: OrgContext) -> List[Finding]:
                             "a local substitute, which is then outside the standard."
                         ),
                         remediation=(
-                            "Dashboard -> Wireless -> SSIDs: enable and configure "
+                            "Dashboard > Wireless > SSIDs: enable and configure "
                             f"'{name}' to the baseline."
                         ),
                     )
@@ -103,7 +103,7 @@ def run(context: OrgContext) -> List[Finding]:
                     evidence=f"SSID #{actual.get('number')} on {net_name}. {detail}.",
                     risk=_risk_for(worst, name),
                     remediation=(
-                        f"Dashboard -> Wireless -> Access control -> SSID '{name}': set "
+                        f"Dashboard > Wireless > Access control > SSID '{name}': set "
                         + ", ".join(f"{f} to '{e}'" for f, e, _ in diffs)
                         + ". Change authentication and VLAN settings in a maintenance "
                         "window; clients will reassociate."
@@ -151,8 +151,8 @@ def run(context: OrgContext) -> List[Finding]:
                         "turned off when its purpose ends."
                     ),
                     remediation=(
-                        f"If '{name}' is no longer needed, disable it: Dashboard -> "
-                        "Wireless -> SSIDs. If it is, add it to the baseline with an owner "
+                        f"If '{name}' is no longer needed, disable it: Dashboard > "
+                        "Wireless > SSIDs. If it is, add it to the baseline with an owner "
                         "and move it off open authentication."
                     ),
                     metadata={"authMode": auth},

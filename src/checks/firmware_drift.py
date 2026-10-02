@@ -90,7 +90,7 @@ def run(context: OrgContext) -> List[Finding]:
                     finding="Firmware version could not be compared with the baseline.",
                     evidence=evidence,
                     risk="The device's firmware state is unknown to this audit.",
-                    remediation="Check the device in Dashboard -> Organization -> Firmware upgrades.",
+                    remediation="Check the device in Dashboard > Organization > Firmware upgrades.",
                 ))
                 continue
 
@@ -106,8 +106,8 @@ def run(context: OrgContext) -> List[Finding]:
                     ),
                     remediation=(
                         "If this is an intentional pilot, record it in the baseline. "
-                        "Otherwise schedule a move to the approved version: Dashboard -> "
-                        "Organization -> Firmware upgrades."
+                        "Otherwise schedule a move to the approved version: Dashboard > "
+                        "Organization > Firmware upgrades."
                     ),
                 ))
                 continue
@@ -134,8 +134,8 @@ def run(context: OrgContext) -> List[Finding]:
                     "Low urgency while the site is internally consistent."
                 ),
                 remediation=(
-                    f"Schedule {name} for '{target_text}': Dashboard -> Organization -> "
-                    "Firmware upgrades -> select the device -> Schedule upgrade. Add "
+                    f"Schedule {name} for '{target_text}': Dashboard > Organization > "
+                    "Firmware upgrades > select the device > Schedule upgrade. Add "
                     "'upgrade to baseline firmware' to the hardware-replacement checklist."
                 ),
             ))

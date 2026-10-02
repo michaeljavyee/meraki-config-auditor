@@ -92,7 +92,7 @@ def run(context: OrgContext) -> List[Finding]:
                         ),
                         remediation=(
                             "Either add the rule to the baseline with a reason, or remove it: "
-                            "Dashboard -> Security & SD-WAN -> Firewall -> Outbound rules."
+                            "Dashboard > Security & SD-WAN > Firewall > Outbound rules."
                         ),
                     )
                 )
@@ -123,8 +123,8 @@ def run(context: OrgContext) -> List[Finding]:
                         "deny is added above it."
                     ),
                     remediation=(
-                        "Add the rule in its baseline position: Dashboard -> Security & "
-                        "SD-WAN -> Firewall -> Outbound rules -> Add a rule."
+                        "Add the rule in its baseline position: Dashboard > Security & "
+                        "SD-WAN > Firewall > Outbound rules > Add a rule."
                     ),
                 )
             )
@@ -151,8 +151,8 @@ def run(context: OrgContext) -> List[Finding]:
                         "enforce a different policy at this site."
                     ),
                     remediation=(
-                        "Drag the rules back into baseline order in Dashboard -> Security & "
-                        "SD-WAN -> Firewall -> Outbound rules."
+                        "Drag the rules back into baseline order in Dashboard > Security & "
+                        "SD-WAN > Firewall > Outbound rules."
                     ),
                 )
             )
@@ -188,7 +188,7 @@ def _shadow_finding(net_name, target, index, rule, shadowed) -> Finding:
             "Confirm with the change owner whether the rule is still needed. If not, "
             "delete it. If it is, narrow it to the specific source, destination and "
             "port required and move it below the baseline rule it overrides: Dashboard "
-            "-> Security & SD-WAN -> Firewall -> Outbound rules."
+            "-> Security & SD-WAN > Firewall > Outbound rules."
         ),
         metadata={"rule_index": index + 1},
     )
@@ -223,7 +223,7 @@ def _extra_allow_finding(net_name, target, index, rule, key: RuleKey) -> Finding
         remediation=(
             "Either adopt it into the baseline with an owner and a reason, or remove it. "
             "If it must stay, narrow source and destination to the specific hosts "
-            "involved: Dashboard -> Security & SD-WAN -> Firewall -> Outbound rules."
+            "involved: Dashboard > Security & SD-WAN > Firewall > Outbound rules."
         ),
         metadata={"rule_index": index + 1},
     )

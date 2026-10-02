@@ -129,8 +129,8 @@ def run(context: OrgContext) -> List[Finding]:
                                 "install becomes a truck roll."
                             ),
                             remediation=(
-                                f"Dashboard -> Switching -> Switch ports -> {switch_name} "
-                                f"port {port_id} -> Allowed VLANs: add "
+                                f"Dashboard > Switching > Switch ports > {switch_name} "
+                                f"port {port_id} > Allowed VLANs: add "
                                 f"{format_vlans(latent)}. Make the same change on the "
                                 "far end of the link so both sides match."
                             ),
@@ -256,7 +256,7 @@ def _cut_off_finding(
             "who needed the device."
         ),
         remediation=(
-            f"Dashboard -> Switching -> Switch ports -> {switch_name} port {port_id} -> "
+            f"Dashboard > Switching > Switch ports > {switch_name} port {port_id} > "
             f"Allowed VLANs: add {format_vlans(set(vlans))}, then confirm the far end of "
             "the link allows it too. Afterwards, add the baseline's required VLAN list "
             "to the cutover checklist and run this audit before closing any switch "

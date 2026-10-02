@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configuration Drift Assessment — {{ org_name }}</title>
+<style>
+/* Everything is inline. No CDN, no external font, no remote image.
+   The report has to survive being attached to a change ticket and opened
+   offline months later. */
+:root {
+  --ink: #14181f; --muted: #5b6472; --line: #e2e6ec; --bg: #ffffff; --panel: #f7f8fa;
+  --critical: #a4161a; --critical-bg: #fdf0f0;
+  --high: #bc4b00; --high-bg: #fdf4ec;
+  --medium: #8a6d00; --medium-bg: #fcf8e8;
+  --low: #2f6b45; --low-bg: #eff6f1;
+  --info: #3a5a8c; --info-bg: #eef3fa;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0 0 80px; background: var(--bg); color: var(--ink);
+  font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+header.cover { border-bottom: 3px solid var(--ink); padding: 56px 0 28px; margin-bottom: 40px; }
+.eyebrow { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 12px; }
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 8px; letter-spacing: -.02em; }
+.subtitle { font-size: 17px; color: var(--muted); margin: 0 0 24px; }
+.meta { display: flex; flex-wrap: wrap; gap: 0 40px; font-size: 13px; color: var(--muted); }
+.meta div { margin-bottom: 4px; }
+.meta strong { color: var(--ink); font-weight: 600; }
+.demo-banner {
+  background: var(--info-bg); border: 1px solid #c6d5ea; border-left: 4px solid var(--info);
+  padding: 12px 16px; border-radius: 4px; font-size: 13px; margin: 24px 0 0; color: #24406b;
+}
+h2 {
+  font-size: 13px; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); font-weight: 700;
+  border-bottom: 1px solid var(--line); padding-bottom: 8px; margin: 48px 0 20px;
+}
+h3 { font-size: 17px; margin: 28px 0 8px; letter-spacing: -.01em; }
+.verdict { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 20px 24px; margin: 0 0 24px; font-size: 15.5px; }
+.verdict p { margin: 0 0 12px; }
+.verdict p:last-child { margin-bottom: 0; }
+.scores { display: flex; gap: 12px; flex-wrap: wrap; margin: 0 0 20px; }
+.score { flex: 1 1 120px; border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; background: #fff; }
+.score .n { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -.03em; }
+.score .l { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 6px; }
+{% for s in ['critical','high','medium','low'] %}
+.score.{{ s }} { background: var(--{{ s }}-bg); }
+.score.{{ s }} .n { color: var(--{{ s }}); }
+.pill.{{ s }} { background: var(--{{ s }}); color: #fff; }
+.finding.{{ s }} { border-left: 5px solid var(--{{ s }}); }
+td.cell.{{ s }} { background: var(--{{ s }}-bg); color: var(--{{ s }}); font-weight: 700; }
+{% endfor %}
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 12px 0 8px; }
+th { text-align: left; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding: 8px 10px; border-bottom: 2px solid var(--line); white-space: nowrap; }
+td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+td.cell { text-align: center; }
+td.num, th.num { text-align: right; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.tag { display: inline-block; font-size: 10.5px; color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding: 0 5px; margin-right: 3px; }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; white-space: nowrap; }
+.pill.info { background: var(--info); color: #fff; }
+.finding { border: 1px solid var(--line); border-radius: 6px; padding: 20px 24px; margin: 0 0 16px; background: #fff; page-break-inside: avoid; }
+.finding-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.finding-head .id { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: .08em; }
+.finding h3 { margin: 6px 0 2px; font-size: 16.5px; }
+.finding .where { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
+.block { margin: 14px 0 0; }
+.block .label { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+.block p { margin: 0; }
+.block.evidence p { background: var(--panel); border-radius: 4px; padding: 10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.55; color: #33404f; word-break: break-word; }
+.roadmap-phase { margin-bottom: 24px; }
+.roadmap-phase .phase-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.roadmap-phase h3 { margin: 0; font-size: 16px; }
+.roadmap-phase .when { font-size: 12.5px; color: var(--muted); }
+ol.actions { margin: 0; padding-left: 22px; }
+ol.actions li { margin-bottom: 8px; }
+ol.actions .who { color: var(--muted); font-size: 13px; }
+ul.plain { margin: 8px 0; padding-left: 20px; }
+ul.plain li { margin-bottom: 7px; }
+.method-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.method-col { flex: 1 1 280px; }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+.empty { color: var(--muted); font-style: italic; padding: 12px 0; }
+.scroll { overflow-x: auto; }
+@media print {
+  body { padding-bottom: 0; }
+  .wrap { max-width: none; padding: 0 12mm; }
+  .finding, .roadmap-phase, table { page-break-inside: avoid; }
+  h2 { page-break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <p class="eyebrow">Network Assessment</p>
+  <h1>Configuration Drift Assessment</h1>
+  <p class="subtitle">{{ org_name }} &mdash; Cisco Meraki organization</p>
+  <div class="meta">
+    <div><strong>Source</strong><br>{{ source }}</div>
+    <div><strong>Baseline</strong><br>{{ baseline.name }} &middot; v{{ baseline.version }}</div>
+    <div><strong>Assessment date</strong><br>{{ generated_at }}</div>
+    <div><strong>Access level</strong><br>Read-only (GET only)</div>
+    <div><strong>Networks / devices</strong><br>{{ site_matrix|length }} / {{ inventory|length }}</div>
+  </div>
+  {% if demo %}
+  <div class="demo-banner">
+    <strong>Demonstration report.</strong> Generated from bundled fixture data
+    representing a fictional three-site company. No Meraki organization was
+    contacted. Every name, serial, address and identifier in this document is synthetic.
+  </div>
+  {% endif %}
+</header>
+
+<!-- 1 ------------------------------------------------------------------ -->
+<h2>1 &nbsp;&middot;&nbsp; Executive summary</h2>
+
+<div class="scores">
+  {% for severity in ['critical', 'high', 'medium', 'low'] %}
+  <div class="score {{ severity }}"><div class="n">{{ counts[severity] }}</div><div class="l">{{ severity }}</div></div>
+  {% endfor %}
+  <div class="score"><div class="n">{{ site_matrix|length }}</div><div class="l">Networks</div></div>
+</div>
+
+<div class="verdict">
+  {% for paragraph in verdict %}<p>{{ paragraph }}</p>{% endfor %}
+</div>
+
+{% if counts['critical'] %}
+<h3>Breaking something now</h3>
+<ul class="plain">
+  {% for finding in findings if finding.severity == 'critical' %}
+  <li><strong>{{ finding.target }}</strong> &mdash; {{ finding.finding }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<!-- 2 ------------------------------------------------------------------ -->
+<h2>2 &nbsp;&middot;&nbsp; Sites at a glance</h2>
+
+<p>Findings per network and area. Cell colour is the most severe finding in that cell.</p>
+<div class="scroll">
+<table>
+  <thead>
+    <tr>
+      <th>Network</th>
+      <th class="num">Devices</th>
+      {% for key, label in category_labels.items() %}<th style="text-align:center">{{ label }}</th>{% endfor %}
+      <th class="num">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for row in site_matrix %}
+    <tr>
+      <td><strong>{{ row.name }}</strong>{% if row.tags %}<br>{% for t in row.tags %}<span class="tag">{{ t }}</span>{% endfor %}{% endif %}</td>
+      <td class="num">{{ row.devices }}</td>
+      {% for key, cell in row.cells.items() %}
+      <td class="cell {{ cell.worst }}">{{ cell.count if cell.count else '—' }}</td>
+      {% endfor %}
+      <td class="num"><strong>{{ row.total }}</strong></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<h3>Device inventory <span class="mono">({{ inventory|length }})</span></h3>
+<div class="scroll">
+<table>
+  <thead><tr><th>Network</th><th>Device</th><th>Model</th><th>Serial</th><th>Firmware</th><th>LAN IP</th><th class="num">Findings</th></tr></thead>
+  <tbody>
+  {% for item in inventory %}
+    <tr>
+      <td>{{ item.network }}</td>
+      <td><strong>{{ item.name }}</strong></td>
+      <td>{{ item.model }}</td>
+      <td class="mono">{{ item.serial }}</td>
+      <td class="mono">{{ item.firmware }}</td>
+      <td class="mono">{{ item.lan_ip or '—' }}</td>
+      <td class="num">{{ item.finding_count or '—' }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<!-- 3 ------------------------------------------------------------------ -->
+<h2>3 &nbsp;&middot;&nbsp; Findings</h2>
+
+{% if not findings %}<p class="empty">No drift from the baseline.</p>{% endif %}
+
+{% for finding in findings %}
+<div class="finding {{ finding.severity }}">
+  <div class="finding-head">
+    <span class="pill {{ finding.severity }}">{{ finding.severity }}</span>
+    <span class="id">DRIFT-{{ '%03d' % loop.index }}</span>
+    <span class="id">{{ finding.category_label }}</span>
+  </div>
+  <h3>{{ finding.finding }}</h3>
+  <div class="where">{{ finding.target }}</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>{{ finding.evidence }}</p></div>
+  <div class="block"><div class="label">Business risk</div><p>{{ finding.risk }}</p></div>
+  <div class="block"><div class="label">Remediation</div><p>{{ finding.remediation }}</p></div>
+</div>
+{% endfor %}
+
+<!-- 4 ------------------------------------------------------------------ -->
+<h2>4 &nbsp;&middot;&nbsp; Remediation roadmap</h2>
+
+<p>Sequenced by consequence, not by effort. The first phase is service restoration
+and belongs in the next change window.</p>
+
+{% for phase in roadmap %}
+<div class="roadmap-phase">
+  <div class="phase-head">
+    <span class="pill {{ phase.severity }}">{{ phase.severity }}</span>
+    <h3>{{ phase.title }}</h3>
+    <span class="when">{{ phase.timeframe }}</span>
+  </div>
+  <ol class="actions">
+    {% for action in phase.actions %}<li>{{ action.summary }}<br><span class="who">{{ action.detail }}</span></li>{% endfor %}
+  </ol>
+</div>
+{% else %}
+<p class="empty">No remediation actions required.</p>
+{% endfor %}
+
+<h3>Structural recommendations</h3>
+<ul class="plain">
+  <li><strong>Gate network changes on this comparison.</strong> Every finding above
+      was detectable from configuration alone. Running the audit as the last step
+      of a cutover or hardware swap, before the change is closed, turns a week-long
+      silent outage into a five-minute fix.</li>
+  <li><strong>Keep the standard in version control.</strong> The baseline used here
+      is a reviewed YAML file. When the standard changes, the change is a pull
+      request with a reason, and "when did we start requiring VLAN 40 on uplinks?"
+      has an answer.</li>
+  <li><strong>Tag uplinks in Dashboard.</strong> Port tags make intent machine-readable.
+      An uplink tagged <span class="mono">uplink</span> can be checked automatically;
+      one identified only by its cable label cannot.</li>
+  <li><strong>Give temporary changes an expiry.</strong> "TEMP" rules and installer
+      SSIDs persist because nothing forces anyone to remove them. A comment with a
+      date and an owner, and a recurring audit that flags it, does.</li>
+</ul>
+
+<!-- 5 ------------------------------------------------------------------ -->
+<h2>5 &nbsp;&middot;&nbsp; Methodology, scope and limitations</h2>
+
+<div class="method-grid">
+  <div class="method-col"><h3>What was examined</h3><ul class="plain">{% for item in scope_covered %}<li>{{ item }}</li>{% endfor %}</ul></div>
+  <div class="method-col"><h3>What was not examined</h3><ul class="plain">{% for item in scope_excluded %}<li>{{ item }}</li>{% endfor %}</ul></div>
+</div>
+
+<h3>Access and method</h3>
+<p>
+  Configuration was read through the Meraki Dashboard API using HTTP GET requests
+  only. No create, update or delete operation exists anywhere in the tool's
+  codebase, and its CI pipeline fails the build if one is added. No configuration
+  was changed, no device was rebooted, and no traffic was generated on the
+  audited networks. Findings are a comparison between live configuration and the
+  baseline <span class="mono">{{ baseline.source }}</span> (v{{ baseline.version }}).
+</p>
+
+<h3>Severity definitions</h3>
+<table>
+  <thead><tr><th>Severity</th><th>Definition</th></tr></thead>
+  <tbody>
+  {% for severity in ['critical', 'high', 'medium', 'low'] %}
+    <tr><td><span class="pill {{ severity }}">{{ severity }}</span></td><td>{{ severity_definitions[severity] }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h3>Limitations</h3>
+<ul class="plain">
+  <li><strong>Drift is measured against the baseline, not against best practice.</strong>
+      A network that matches a weak baseline will report clean. The baseline is
+      included with this report so it can be reviewed on its own merits.</li>
+  <li><strong>Uplinks are identified by port tag or name.</strong> An uplink that is
+      neither tagged nor named as one is not assessed, and is listed below if trunk
+      ports were seen without an identifiable uplink.</li>
+  <li><strong>Firewall shadowing is computed structurally.</strong> CIDR containment is
+      evaluated exactly; VLAN object references and FQDNs are compared by equality,
+      so overlap between differently-expressed objects can be missed.</li>
+  {% for limitation in scope_limitations %}<li>{{ limitation }}</li>{% endfor %}
+  <li><strong>Point-in-time.</strong> This reflects configuration as of {{ generated_at }}.</li>
+</ul>
+
+<footer>
+  Generated by <strong>meraki-config-auditor</strong> v{{ version }} &mdash; read-only
+  Meraki configuration drift assessment.<br>
+  {{ generated_at }}{% if demo %} &middot; demonstration data{% endif %}
+</footer>
+
+</div>
+</body>
+</html>
