@@ -1,3 +1,3 @@
 """Read-only Meraki configuration drift and compliance auditor."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

@@ -6,7 +6,9 @@ Read-only configuration drift and compliance auditor for Cisco Meraki. It pulls
 configuration from every network in an organization through the Dashboard API,
 compares it against a declared baseline in YAML, and produces an assessment
 report: findings with evidence, business risk and remediation, sequenced by
-consequence.
+consequence. A second mode treats network configuration as code: export live
+config to YAML, then `plan` shows exactly what would have to change for the
+network to match it.
 
 I built it after root-causing an outage that came down to a single VLAN missing
 from an uplink trunk after a switch cutover. The cameras behind that switch had
@@ -51,6 +53,53 @@ Severity is set by **consequence, not by distance from the baseline**. One
 missing number in an allowed-VLAN list is an outage. A dozen band-steering
 differences are a tidy-up. Definitions are in the report and in
 [`src/scoring.py`](src/scoring.py).
+
+## Configuration as code: `export` and `plan`
+
+The audit asks *is this network compliant with our standard?* The second half
+of the tool asks *is it configured the way we said it would be?*, and answers
+the way `terraform plan` does.
+
+```bash
+python -m src.export --demo --output intent/mine.yaml   # live config -> YAML
+python -m src.plan --demo                                # intent vs live -> plan
+```
+
+```diff
+~ network["Depot-West"].switch_port["SW-WEST-IDF1"]["8"]   # Uplink
+    ~ allowedVlans : "1,10,20,30" -> "1,10,20,30,40"   (+40)
+
+~ network["Depot-West"].l3_firewall_rules   # 4 rules -> 3 rules (0 added, 1 removed)
+    - [was #1] ALLOW any VLAN(30).*:Any -> Any:Any  "TEMP vendor access during cutover - remove after"
+
++ network["Depot-West"].appliance_vlan[50]   # Badge readers
+    + name        = "Badge readers"
+    + subnet      = "10.30.50.0/24"
+    + applianceIp = "10.30.50.1"
+
+Plan: 1 to add, 8 to change, 0 to destroy.
+```
+
+- **`export`** snapshots a hand-built network as YAML: the starting point for
+  managing it as code. Export, then plan against the export, and the plan is
+  empty; a test holds that property.
+- **`plan`** compares an intent file (or a directory, one file per site) with
+  live config. Only declared attributes are managed, so a network can be
+  adopted one section at a time, starting with what hurts when it drifts:
+  uplinks, firewall, SSIDs. VLAN lists compare as sets and changes are
+  annotated (`+40`); firewall rules diff as an ordered list, so one inserted
+  rule is one addition, not every later rule "changing".
+- **Exit codes** match `terraform plan -detailed-exitcode` (0 none, 2 changes,
+  1 error), and `--format markdown` produces a PR comment, so a pipeline can
+  run plan on every intent change and on a schedule to catch drift.
+- **There is no `apply`.** A tool that can change production networks is a
+  liability in a portfolio unless its guardrails are obvious, and the honest
+  first step is a plan you trust. The reasoning, and what apply would need
+  before it exists, is in [`docs/config-as-code.md`](docs/config-as-code.md).
+
+The demo intent, [`intent/demo/cedar-valley.yaml`](intent/demo/cedar-valley.yaml),
+is the approved design for the demo org. Its plan is the change list that
+would fix every drift the audit found, plus one approved-but-unbuilt VLAN.
 
 ## Design decisions
 
@@ -114,9 +163,16 @@ src/
     ssid_consistency.py
     firmware_drift.py
   report.py            HTML, CSV and terminal renderers
-  audit.py             CLI
+  audit.py             audit CLI
+  state.py             live config -> intent-shaped data (managed attributes only)
+  intent.py            intent YAML loader and validation
+  diff.py              intent vs live -> plan (create / update / delete)
+  render_plan.py       plan as text, Markdown, JSON
+  export.py            export CLI
+  plan.py              plan CLI
 templates/report.html.j2
 baselines/example.yaml
+intent/demo/cedar-valley.yaml
 scripts/generate_fixtures.py
 docs/
 tests/
@@ -124,10 +180,12 @@ tests/
 
 ## Status and roadmap
 
-**v0.1.** Four checks, demo mode, HTML/CSV/terminal output, CI. Validated
-end to end against a live Cisco DevNet Meraki Sandbox organization; what that
-run found and what changed as a result is in
-[`docs/live-validation.md`](docs/live-validation.md).
+**v0.2.** Four audit checks, plus `export` and `plan` for configuration as
+code (v0.2), demo mode, HTML/CSV/terminal/Markdown/JSON output, CI. The audit
+was validated end to end against a live Cisco DevNet Meraki Sandbox
+organization; what that run found and what changed as a result is in
+[`docs/live-validation.md`](docs/live-validation.md). `export` and `plan` read
+through the same client and haven't had their own live run yet.
 
 Planned, in order:
 
@@ -138,8 +196,7 @@ Planned, in order:
 3. **Orphaned objects:** policy objects and group policies nothing references.
 4. **IPAM reconciliation:** VLAN subnets vs DHCP scopes vs reservations; overlaps
    and exhaustion risk.
-5. **`plan`:** a Terraform-style diff between baseline intent and live state.
-   Read-only; there is deliberately no `apply`.
+5. **More resources under `plan`:** group policies, DHCP settings, switch ACLs.
 
 ## Tests
 
@@ -148,8 +205,10 @@ python -m pytest -q
 ```
 
 Unit tests cover each check against small hand-built configurations, the
-demo story end to end, the client's pagination, retry and error handling, and
-HTML escaping of Dashboard-supplied strings.
+demo story end to end, the client's pagination, retry and error handling,
+HTML escaping of Dashboard-supplied strings, and for `plan`: the
+export-then-plan-is-empty round trip, exit codes, set semantics for VLAN
+lists, ordered firewall diffs, exclusive deletion, and intent validation.
 
 ## Related
 

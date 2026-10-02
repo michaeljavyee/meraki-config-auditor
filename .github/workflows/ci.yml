@@ -32,6 +32,16 @@ jobs:
           test -s /tmp/ci_report.html
           test -s /tmp/ci_report.csv
           grep -q "Configuration Drift Assessment" /tmp/ci_report.html
+      - name: Export then plan is a no-op; demo intent plans changes
+        run: |
+          python -m src.export --demo --output /tmp/snapshot.yaml
+          python -m src.plan --demo --intent /tmp/snapshot.yaml --format text
+          set +e
+          python -m src.plan --demo --format markdown --output /tmp/plan.md
+          code=$?
+          set -e
+          if [ "$code" -ne 2 ]; then echo "expected exit 2 (changes), got $code"; exit 1; fi
+          grep -q "Plan: 1 to add, 8 to change, 0 to destroy." /tmp/plan.md
 
   read-only-guarantee:
     # The README claims this tool cannot change a Meraki network. That claim is
