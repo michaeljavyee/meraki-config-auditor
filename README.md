@@ -15,7 +15,7 @@ is the tool that would have caught it before the change was closed.
 
 ![Report summary](images/report-summary.png)
 
-**[View the sample report →](reports/sample_report.html)**
+**[View the sample report →](https://michaeljavyee.github.io/meraki-config-auditor/reports/sample_report.html)**
 
 ## Try it with zero setup
 
