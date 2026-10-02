@@ -1,0 +1,23 @@
+# Secrets
+.env
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Generated reports (the committed sample is whitelisted)
+reports/*
+!reports/sample_report.html
+!reports/.gitkeep
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
