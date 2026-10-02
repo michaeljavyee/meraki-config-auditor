@@ -80,9 +80,11 @@ python -m src.audit --baseline baselines/example.yaml --format all
 ```
 
 A read-only organization admin key is sufficient. For a no-cost live target,
-use the [Cisco DevNet Meraki always-on sandbox](https://developer.cisco.com/meraki/);
-it has a real dashboard with a published read-only key. Its configuration will
-differ from the example baseline, so expect findings; that's the point.
+reserve the **Meraki Sandbox** at [devnetsandbox.cisco.com](https://devnetsandbox.cisco.com):
+a dedicated organization with a virtual MX, MS, MR and MV, read-only, for up to
+a day. You need a free Meraki account; accept the org invite DevNet sends, then
+generate an API key inside that org. Its configuration will differ from the
+example baseline, so expect findings; that's the point.
 
 ### Options
 
@@ -122,18 +124,21 @@ tests/
 
 ## Status and roadmap
 
-**v0.1.** Four checks, demo mode, HTML/CSV/terminal output, CI. The live client
-is unit-tested against mocked API responses; a validation run against the
-DevNet always-on sandbox is next.
+**v0.1.** Four checks, demo mode, HTML/CSV/terminal output, CI. Validated
+end to end against a live Cisco DevNet Meraki Sandbox organization; what that
+run found and what changed as a result is in
+[`docs/live-validation.md`](docs/live-validation.md).
 
 Planned, in order:
 
-1. **Switch port drift:** access vs trunk, native VLAN, 802.1X/access policy,
+1. **Uplink detection from LLDP topology**, as a fallback when uplinks aren't
+   tagged (the gap the live run exposed).
+2. **Switch port drift:** access vs trunk, native VLAN, 802.1X/access policy,
    STP guard, against per-role port profiles.
-2. **Orphaned objects:** policy objects and group policies nothing references.
-3. **IPAM reconciliation:** VLAN subnets vs DHCP scopes vs reservations; overlaps
+3. **Orphaned objects:** policy objects and group policies nothing references.
+4. **IPAM reconciliation:** VLAN subnets vs DHCP scopes vs reservations; overlaps
    and exhaustion risk.
-4. **`plan`:** a Terraform-style diff between baseline intent and live state.
+5. **`plan`:** a Terraform-style diff between baseline intent and live state.
    Read-only; there is deliberately no `apply`.
 
 ## Tests
