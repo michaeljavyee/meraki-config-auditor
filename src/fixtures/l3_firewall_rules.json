@@ -1,0 +1,154 @@
+{
+  "L_100000000000000001": {
+    "rules": [
+      {
+        "comment": "Guest cannot reach internal",
+        "policy": "deny",
+        "protocol": "any",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(30).*",
+        "destPort": "Any",
+        "destCidr": "10.0.0.0/8",
+        "syslogEnabled": true
+      },
+      {
+        "comment": "Cameras cannot reach corp",
+        "policy": "deny",
+        "protocol": "any",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(40).*",
+        "destPort": "Any",
+        "destCidr": "VLAN(10).*",
+        "syslogEnabled": true
+      },
+      {
+        "comment": "Corp to camera local streams",
+        "policy": "allow",
+        "protocol": "tcp",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(10).*",
+        "destPort": "443",
+        "destCidr": "VLAN(40).*",
+        "syslogEnabled": false
+      },
+      {
+        "comment": "Default rule",
+        "policy": "allow",
+        "protocol": "Any",
+        "srcPort": "Any",
+        "srcCidr": "Any",
+        "destPort": "Any",
+        "destCidr": "Any",
+        "syslogEnabled": false
+      }
+    ]
+  },
+  "L_100000000000000002": {
+    "rules": [
+      {
+        "comment": "SNMP for monitoring vendor",
+        "policy": "allow",
+        "protocol": "udp",
+        "srcPort": "Any",
+        "srcCidr": "Any",
+        "destPort": "161",
+        "destCidr": "Any",
+        "syslogEnabled": false
+      },
+      {
+        "comment": "Guest cannot reach internal",
+        "policy": "deny",
+        "protocol": "any",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(30).*",
+        "destPort": "Any",
+        "destCidr": "10.0.0.0/8",
+        "syslogEnabled": true
+      },
+      {
+        "comment": "Cameras cannot reach corp",
+        "policy": "deny",
+        "protocol": "any",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(40).*",
+        "destPort": "Any",
+        "destCidr": "VLAN(10).*",
+        "syslogEnabled": true
+      },
+      {
+        "comment": "Corp to camera local streams",
+        "policy": "allow",
+        "protocol": "tcp",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(10).*",
+        "destPort": "443",
+        "destCidr": "VLAN(40).*",
+        "syslogEnabled": false
+      },
+      {
+        "comment": "Default rule",
+        "policy": "allow",
+        "protocol": "Any",
+        "srcPort": "Any",
+        "srcCidr": "Any",
+        "destPort": "Any",
+        "destCidr": "Any",
+        "syslogEnabled": false
+      }
+    ]
+  },
+  "L_100000000000000003": {
+    "rules": [
+      {
+        "comment": "TEMP vendor access during cutover - remove after",
+        "policy": "allow",
+        "protocol": "any",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(30).*",
+        "destPort": "Any",
+        "destCidr": "Any",
+        "syslogEnabled": false
+      },
+      {
+        "comment": "Guest cannot reach internal",
+        "policy": "deny",
+        "protocol": "any",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(30).*",
+        "destPort": "Any",
+        "destCidr": "10.0.0.0/8",
+        "syslogEnabled": true
+      },
+      {
+        "comment": "Cameras cannot reach corp",
+        "policy": "deny",
+        "protocol": "any",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(40).*",
+        "destPort": "Any",
+        "destCidr": "VLAN(10).*",
+        "syslogEnabled": true
+      },
+      {
+        "comment": "Corp to camera local streams",
+        "policy": "allow",
+        "protocol": "tcp",
+        "srcPort": "Any",
+        "srcCidr": "VLAN(10).*",
+        "destPort": "443",
+        "destCidr": "VLAN(40).*",
+        "syslogEnabled": false
+      },
+      {
+        "comment": "Default rule",
+        "policy": "allow",
+        "protocol": "Any",
+        "srcPort": "Any",
+        "srcCidr": "Any",
+        "destPort": "Any",
+        "destCidr": "Any",
+        "syslogEnabled": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "id": "100000",
+    "name": "Cedar Valley Logistics",
+    "url": "https://n000.meraki.com/o/EXAMPLE/manage/organization/overview",
+    "api": {
+      "enabled": true
+    }
+  }
+]

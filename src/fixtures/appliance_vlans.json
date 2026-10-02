@@ -1,0 +1,113 @@
+{
+  "L_100000000000000001": [
+    {
+      "id": 1,
+      "networkId": "L_100000000000000001",
+      "name": "Management",
+      "applianceIp": "10.10.1.1",
+      "subnet": "10.10.1.0/24"
+    },
+    {
+      "id": 10,
+      "networkId": "L_100000000000000001",
+      "name": "Corp",
+      "applianceIp": "10.10.10.1",
+      "subnet": "10.10.10.0/24"
+    },
+    {
+      "id": 20,
+      "networkId": "L_100000000000000001",
+      "name": "Voice",
+      "applianceIp": "10.10.20.1",
+      "subnet": "10.10.20.0/24"
+    },
+    {
+      "id": 30,
+      "networkId": "L_100000000000000001",
+      "name": "Guest",
+      "applianceIp": "10.10.30.1",
+      "subnet": "10.10.30.0/24"
+    },
+    {
+      "id": 40,
+      "networkId": "L_100000000000000001",
+      "name": "Cameras",
+      "applianceIp": "10.10.40.1",
+      "subnet": "10.10.40.0/24"
+    }
+  ],
+  "L_100000000000000002": [
+    {
+      "id": 1,
+      "networkId": "L_100000000000000002",
+      "name": "Management",
+      "applianceIp": "10.20.1.1",
+      "subnet": "10.20.1.0/24"
+    },
+    {
+      "id": 10,
+      "networkId": "L_100000000000000002",
+      "name": "Corp",
+      "applianceIp": "10.20.10.1",
+      "subnet": "10.20.10.0/24"
+    },
+    {
+      "id": 20,
+      "networkId": "L_100000000000000002",
+      "name": "Voice",
+      "applianceIp": "10.20.20.1",
+      "subnet": "10.20.20.0/24"
+    },
+    {
+      "id": 30,
+      "networkId": "L_100000000000000002",
+      "name": "Guest",
+      "applianceIp": "10.20.30.1",
+      "subnet": "10.20.30.0/24"
+    },
+    {
+      "id": 40,
+      "networkId": "L_100000000000000002",
+      "name": "Cameras",
+      "applianceIp": "10.20.40.1",
+      "subnet": "10.20.40.0/24"
+    }
+  ],
+  "L_100000000000000003": [
+    {
+      "id": 1,
+      "networkId": "L_100000000000000003",
+      "name": "Management",
+      "applianceIp": "10.30.1.1",
+      "subnet": "10.30.1.0/24"
+    },
+    {
+      "id": 10,
+      "networkId": "L_100000000000000003",
+      "name": "Corp",
+      "applianceIp": "10.30.10.1",
+      "subnet": "10.30.10.0/24"
+    },
+    {
+      "id": 20,
+      "networkId": "L_100000000000000003",
+      "name": "Voice",
+      "applianceIp": "10.30.20.1",
+      "subnet": "10.30.20.0/24"
+    },
+    {
+      "id": 30,
+      "networkId": "L_100000000000000003",
+      "name": "Guest",
+      "applianceIp": "10.30.30.1",
+      "subnet": "10.30.30.0/24"
+    },
+    {
+      "id": 40,
+      "networkId": "L_100000000000000003",
+      "name": "Cameras",
+      "applianceIp": "10.30.40.1",
+      "subnet": "10.30.40.0/24"
+    }
+  ]
+}

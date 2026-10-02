@@ -1,0 +1,193 @@
+[
+  {
+    "name": "MX-HQ",
+    "serial": "Q2XX-HQ00-MX01",
+    "mac": "00:18:0a:b2:58:46",
+    "networkId": "L_100000000000000001",
+    "model": "MX85",
+    "productType": "appliance",
+    "firmware": "wired-18-2-11",
+    "lanIp": "10.10.1.1",
+    "tags": []
+  },
+  {
+    "name": "SW-HQ-CORE",
+    "serial": "Q2XX-HQ00-SW01",
+    "mac": "00:18:0a:20:92:de",
+    "networkId": "L_100000000000000001",
+    "model": "MS250-48LP",
+    "productType": "switch",
+    "firmware": "switch-17-1-4",
+    "lanIp": "10.10.1.2",
+    "tags": []
+  },
+  {
+    "name": "SW-HQ-IDF1",
+    "serial": "Q2XX-HQ00-SW02",
+    "mac": "00:18:0a:b0:c2:4f",
+    "networkId": "L_100000000000000001",
+    "model": "MS130-24P",
+    "productType": "switch",
+    "firmware": "switch-17-1-4",
+    "lanIp": "10.10.1.3",
+    "tags": []
+  },
+  {
+    "name": "AP-HQ-01",
+    "serial": "Q2XX-HQ00-AP01",
+    "mac": "00:18:0a:4b:d9:48",
+    "networkId": "L_100000000000000001",
+    "model": "MR46",
+    "productType": "wireless",
+    "firmware": "wireless-30-7",
+    "lanIp": "10.10.1.21",
+    "tags": []
+  },
+  {
+    "name": "AP-HQ-02",
+    "serial": "Q2XX-HQ00-AP02",
+    "mac": "00:18:0a:64:cc:7d",
+    "networkId": "L_100000000000000001",
+    "model": "MR46",
+    "productType": "wireless",
+    "firmware": "wireless-30-7",
+    "lanIp": "10.10.1.22",
+    "tags": []
+  },
+  {
+    "name": "CAM-HQ-LOBBY",
+    "serial": "Q2XX-HQ00-CM01",
+    "mac": "00:18:0a:d1:ac:79",
+    "networkId": "L_100000000000000001",
+    "model": "MV63",
+    "productType": "camera",
+    "firmware": "camera-5-3",
+    "lanIp": "10.10.40.11",
+    "tags": []
+  },
+  {
+    "name": "MX-EAST",
+    "serial": "Q2XX-EA00-MX01",
+    "mac": "00:18:0a:09:5e:c2",
+    "networkId": "L_100000000000000002",
+    "model": "MX67",
+    "productType": "appliance",
+    "firmware": "wired-18-2-11",
+    "lanIp": "10.20.1.1",
+    "tags": []
+  },
+  {
+    "name": "SW-EAST-CORE",
+    "serial": "Q2XX-EA00-SW01",
+    "mac": "00:18:0a:6a:2e:35",
+    "networkId": "L_100000000000000002",
+    "model": "MS130-24P",
+    "productType": "switch",
+    "firmware": "switch-17-1-4",
+    "lanIp": "10.20.1.2",
+    "tags": []
+  },
+  {
+    "name": "SW-EAST-IDF1",
+    "serial": "Q2XX-EA00-SW02",
+    "mac": "00:18:0a:14:03:cf",
+    "networkId": "L_100000000000000002",
+    "model": "MS130-8P",
+    "productType": "switch",
+    "firmware": "switch-17-1-4",
+    "lanIp": "10.20.1.3",
+    "tags": []
+  },
+  {
+    "name": "AP-EAST-01",
+    "serial": "Q2XX-EA00-AP01",
+    "mac": "00:18:0a:32:ce:ed",
+    "networkId": "L_100000000000000002",
+    "model": "MR36",
+    "productType": "wireless",
+    "firmware": "wireless-31-1",
+    "lanIp": "10.20.1.21",
+    "tags": [
+      "beta-test"
+    ]
+  },
+  {
+    "name": "CAM-EAST-GATE",
+    "serial": "Q2XX-EA00-CM01",
+    "mac": "00:18:0a:5e:d0:71",
+    "networkId": "L_100000000000000002",
+    "model": "MV63",
+    "productType": "camera",
+    "firmware": "camera-5-3",
+    "lanIp": "10.20.40.11",
+    "tags": []
+  },
+  {
+    "name": "MX-WEST",
+    "serial": "Q2XX-WE00-MX01",
+    "mac": "00:18:0a:c7:b4:c3",
+    "networkId": "L_100000000000000003",
+    "model": "MX67",
+    "productType": "appliance",
+    "firmware": "wired-18-1-7",
+    "lanIp": "10.30.1.1",
+    "tags": []
+  },
+  {
+    "name": "SW-WEST-CORE",
+    "serial": "Q2XX-WE00-SW01",
+    "mac": "00:18:0a:bd:e6:6d",
+    "networkId": "L_100000000000000003",
+    "model": "MS130-24P",
+    "productType": "switch",
+    "firmware": "switch-17-1-4",
+    "lanIp": "10.30.1.2",
+    "tags": []
+  },
+  {
+    "name": "SW-WEST-IDF1",
+    "serial": "Q2XX-WE00-SW03",
+    "mac": "00:18:0a:59:a2:74",
+    "networkId": "L_100000000000000003",
+    "model": "MS130-8P",
+    "productType": "switch",
+    "firmware": "switch-16-8-1",
+    "lanIp": "10.30.1.3",
+    "tags": [
+      "replaced-2026-09"
+    ]
+  },
+  {
+    "name": "AP-WEST-01",
+    "serial": "Q2XX-WE00-AP01",
+    "mac": "00:18:0a:cb:66:e3",
+    "networkId": "L_100000000000000003",
+    "model": "MR36",
+    "productType": "wireless",
+    "firmware": "wireless-30-7",
+    "lanIp": "10.30.1.21",
+    "tags": []
+  },
+  {
+    "name": "CAM-WEST-YARD-01",
+    "serial": "Q2XX-WE00-CM01",
+    "mac": "00:18:0a:a1:10:af",
+    "networkId": "L_100000000000000003",
+    "model": "MV63",
+    "productType": "camera",
+    "firmware": "camera-5-3",
+    "lanIp": "10.30.40.11",
+    "tags": []
+  },
+  {
+    "name": "CAM-WEST-YARD-02",
+    "serial": "Q2XX-WE00-CM02",
+    "mac": "00:18:0a:61:ff:4b",
+    "networkId": "L_100000000000000003",
+    "model": "MV63",
+    "productType": "camera",
+    "firmware": "camera-5-3",
+    "lanIp": "10.30.40.12",
+    "tags": []
+  }
+]

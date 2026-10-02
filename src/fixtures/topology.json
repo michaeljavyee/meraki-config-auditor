@@ -1,0 +1,236 @@
+{
+  "L_100000000000000001": {
+    "links": [
+      {
+        "ends": [
+          {
+            "node": {
+              "derivedId": "Q2XX-HQ00-SW01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-HQ00-SW01",
+              "name": "SW-HQ-CORE"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "48"
+              },
+              "cdp": null
+            }
+          },
+          {
+            "node": {
+              "derivedId": "Q2XX-HQ00-MX01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-HQ00-MX01",
+              "name": "MX-HQ"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "3"
+              },
+              "cdp": null
+            }
+          }
+        ],
+        "lastReportedAt": "2026-10-01T16:00:00Z"
+      },
+      {
+        "ends": [
+          {
+            "node": {
+              "derivedId": "Q2XX-HQ00-SW01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-HQ00-SW01",
+              "name": "SW-HQ-CORE"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "47"
+              },
+              "cdp": null
+            }
+          },
+          {
+            "node": {
+              "derivedId": "Q2XX-HQ00-SW02",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-HQ00-SW02",
+              "name": "SW-HQ-IDF1"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "24"
+              },
+              "cdp": null
+            }
+          }
+        ],
+        "lastReportedAt": "2026-10-01T16:00:00Z"
+      }
+    ]
+  },
+  "L_100000000000000002": {
+    "links": [
+      {
+        "ends": [
+          {
+            "node": {
+              "derivedId": "Q2XX-EA00-SW01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-EA00-SW01",
+              "name": "SW-EAST-CORE"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "24"
+              },
+              "cdp": null
+            }
+          },
+          {
+            "node": {
+              "derivedId": "Q2XX-EA00-MX01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-EA00-MX01",
+              "name": "MX-EAST"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "3"
+              },
+              "cdp": null
+            }
+          }
+        ],
+        "lastReportedAt": "2026-10-01T16:00:00Z"
+      },
+      {
+        "ends": [
+          {
+            "node": {
+              "derivedId": "Q2XX-EA00-SW01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-EA00-SW01",
+              "name": "SW-EAST-CORE"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "23"
+              },
+              "cdp": null
+            }
+          },
+          {
+            "node": {
+              "derivedId": "Q2XX-EA00-SW02",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-EA00-SW02",
+              "name": "SW-EAST-IDF1"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "8"
+              },
+              "cdp": null
+            }
+          }
+        ],
+        "lastReportedAt": "2026-10-01T16:00:00Z"
+      }
+    ]
+  },
+  "L_100000000000000003": {
+    "links": [
+      {
+        "ends": [
+          {
+            "node": {
+              "derivedId": "Q2XX-WE00-SW01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-WE00-SW01",
+              "name": "SW-WEST-CORE"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "24"
+              },
+              "cdp": null
+            }
+          },
+          {
+            "node": {
+              "derivedId": "Q2XX-WE00-MX01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-WE00-MX01",
+              "name": "MX-WEST"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "3"
+              },
+              "cdp": null
+            }
+          }
+        ],
+        "lastReportedAt": "2026-10-01T16:00:00Z"
+      },
+      {
+        "ends": [
+          {
+            "node": {
+              "derivedId": "Q2XX-WE00-SW01",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-WE00-SW01",
+              "name": "SW-WEST-CORE"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "23"
+              },
+              "cdp": null
+            }
+          },
+          {
+            "node": {
+              "derivedId": "Q2XX-WE00-SW03",
+              "type": "device"
+            },
+            "device": {
+              "serial": "Q2XX-WE00-SW03",
+              "name": "SW-WEST-IDF1"
+            },
+            "discovered": {
+              "lldp": {
+                "portId": "8"
+              },
+              "cdp": null
+            }
+          }
+        ],
+        "lastReportedAt": "2026-10-01T16:00:00Z"
+      }
+    ]
+  }
+}

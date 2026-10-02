@@ -1,0 +1,524 @@
+{
+  "Q2XX-HQ00-SW01": [
+    {
+      "portId": "1",
+      "name": "Desk 1",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "2",
+      "name": "Desk 2",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "3",
+      "name": "Desk 3",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "4",
+      "name": "Desk 4",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "5",
+      "name": "Lobby camera",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "47",
+      "name": "Downlink SW-HQ-IDF1",
+      "tags": [
+        "downlink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "48",
+      "name": "Uplink MX-HQ",
+      "tags": [
+        "uplink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "1,10,20,30,40",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    }
+  ],
+  "Q2XX-HQ00-SW02": [
+    {
+      "portId": "1",
+      "name": "Desk 1",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "2",
+      "name": "Desk 2",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "3",
+      "name": "Desk 3",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "4",
+      "name": "Desk 4",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "5",
+      "name": "Guest kiosk",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 30,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "24",
+      "name": "Uplink SW-HQ-CORE",
+      "tags": [
+        "uplink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "1,10,20,30",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    }
+  ],
+  "Q2XX-EA00-SW01": [
+    {
+      "portId": "1",
+      "name": "Dispatch 1",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "2",
+      "name": "Dispatch 2",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "3",
+      "name": "Dispatch 3",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "23",
+      "name": "Downlink SW-EAST-IDF1",
+      "tags": [
+        "downlink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "24",
+      "name": "Uplink MX-EAST",
+      "tags": [
+        "uplink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "1,10,20,30,40",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    }
+  ],
+  "Q2XX-EA00-SW02": [
+    {
+      "portId": "1",
+      "name": "Gate camera",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "2",
+      "name": "Fuel island camera",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "3",
+      "name": "Shop PC",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "8",
+      "name": "Uplink SW-EAST-CORE",
+      "tags": [
+        "uplink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 10,
+      "voiceVlan": null,
+      "allowedVlans": "1,10,20,30,40",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    }
+  ],
+  "Q2XX-WE00-SW01": [
+    {
+      "portId": "1",
+      "name": "Dispatch 1",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "2",
+      "name": "Dispatch 2",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": 20,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "23",
+      "name": "Downlink SW-WEST-IDF1",
+      "tags": [
+        "downlink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "24",
+      "name": "Uplink MX-WEST",
+      "tags": [
+        "uplink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "1,10,20,30,40",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    }
+  ],
+  "Q2XX-WE00-SW03": [
+    {
+      "portId": "1",
+      "name": "Yard camera 1",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "2",
+      "name": "Yard camera 2",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "3",
+      "name": "Yard camera 3",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "4",
+      "name": "Yard camera 4",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "5",
+      "name": "Yard camera 5",
+      "tags": [
+        "camera"
+      ],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 40,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "6",
+      "name": "Wash bay PC",
+      "tags": [],
+      "enabled": true,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "7",
+      "name": "Spare",
+      "tags": [],
+      "enabled": false,
+      "poeEnabled": true,
+      "type": "access",
+      "vlan": 10,
+      "voiceVlan": null,
+      "allowedVlans": "all",
+      "rstpEnabled": true,
+      "stpGuard": "bpdu guard",
+      "accessPolicyType": "Open"
+    },
+    {
+      "portId": "8",
+      "name": "Uplink",
+      "tags": [
+        "uplink"
+      ],
+      "enabled": true,
+      "poeEnabled": false,
+      "type": "trunk",
+      "vlan": 1,
+      "voiceVlan": null,
+      "allowedVlans": "1,10,20,30",
+      "rstpEnabled": true,
+      "stpGuard": "disabled",
+      "accessPolicyType": "Open"
+    }
+  ]
+}

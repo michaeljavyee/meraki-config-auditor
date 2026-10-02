@@ -1,0 +1,48 @@
+[
+  {
+    "id": "L_100000000000000001",
+    "organizationId": "100000",
+    "name": "HQ",
+    "productTypes": [
+      "appliance",
+      "camera",
+      "switch",
+      "wireless"
+    ],
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "hq"
+    ]
+  },
+  {
+    "id": "L_100000000000000002",
+    "organizationId": "100000",
+    "name": "Depot-East",
+    "productTypes": [
+      "appliance",
+      "camera",
+      "switch",
+      "wireless"
+    ],
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "depot"
+    ]
+  },
+  {
+    "id": "L_100000000000000003",
+    "organizationId": "100000",
+    "name": "Depot-West",
+    "productTypes": [
+      "appliance",
+      "camera",
+      "switch",
+      "wireless"
+    ],
+    "timeZone": "America/Los_Angeles",
+    "tags": [
+      "depot",
+      "cutover-2026-09"
+    ]
+  }
+]

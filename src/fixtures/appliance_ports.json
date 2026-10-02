@@ -1,0 +1,62 @@
+{
+  "L_100000000000000001": [
+    {
+      "number": 3,
+      "enabled": true,
+      "type": "trunk",
+      "dropUntaggedTraffic": false,
+      "vlan": 1,
+      "allowedVlans": "all",
+      "accessPolicy": "open"
+    },
+    {
+      "number": 4,
+      "enabled": false,
+      "type": "access",
+      "dropUntaggedTraffic": false,
+      "vlan": 1,
+      "allowedVlans": "all",
+      "accessPolicy": "open"
+    }
+  ],
+  "L_100000000000000002": [
+    {
+      "number": 3,
+      "enabled": true,
+      "type": "trunk",
+      "dropUntaggedTraffic": false,
+      "vlan": 1,
+      "allowedVlans": "all",
+      "accessPolicy": "open"
+    },
+    {
+      "number": 4,
+      "enabled": false,
+      "type": "access",
+      "dropUntaggedTraffic": false,
+      "vlan": 1,
+      "allowedVlans": "all",
+      "accessPolicy": "open"
+    }
+  ],
+  "L_100000000000000003": [
+    {
+      "number": 3,
+      "enabled": true,
+      "type": "trunk",
+      "dropUntaggedTraffic": false,
+      "vlan": 1,
+      "allowedVlans": "all",
+      "accessPolicy": "open"
+    },
+    {
+      "number": 4,
+      "enabled": false,
+      "type": "access",
+      "dropUntaggedTraffic": false,
+      "vlan": 1,
+      "allowedVlans": "all",
+      "accessPolicy": "open"
+    }
+  ]
+}
