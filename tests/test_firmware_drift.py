@@ -36,6 +36,15 @@ def test_consistently_behind_is_low(stub_context):
 
 
 def test_unparseable_firmware_is_low(stub_context):
-    ctx = _ctx(stub_context, [_sw("A", "Not running configured version")])
+    ctx = _ctx(stub_context, [_sw("A", "unknown-build")])
     findings = firmware_drift.run(ctx)
     assert findings[0].severity == LOW and "could not be compared" in findings[0].finding
+
+
+def test_not_running_configured_version_is_explained(stub_context):
+    # Dashboard's literal value for a device that never applied its firmware,
+    # observed on a live DevNet sandbox org.
+    ctx = _ctx(stub_context, [_sw("A", "Not running configured version")])
+    findings = firmware_drift.run(ctx)
+    assert findings[0].severity == LOW
+    assert "not running its network's configured firmware" in findings[0].finding

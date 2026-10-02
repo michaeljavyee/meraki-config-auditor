@@ -33,6 +33,8 @@ CHECK_NAME = "firmware_drift"
 
 Version = Tuple[int, ...]
 
+NOT_RUNNING_CONFIGURED = "not running configured version"
+
 
 def parse_version(firmware: Any) -> Optional[Version]:
     if not firmware:
@@ -83,6 +85,29 @@ def run(context: OrgContext) -> List[Finding]:
             tags = device.get("tags") or []
             if tags:
                 evidence += f" Device tags: {', '.join(tags)}."
+
+            if str(running_text).strip().lower() == NOT_RUNNING_CONFIGURED:
+                # Dashboard's literal value when a device has never applied
+                # the firmware its network is configured for: typically a
+                # unit that was never brought online, is offline, or is
+                # mid-upgrade. Seen first on a live DevNet sandbox org.
+                findings.append(Finding(
+                    severity=LOW, **base,
+                    finding="Device is not running its network's configured firmware.",
+                    evidence=evidence,
+                    risk=(
+                        "Dashboard reports this device has not applied the firmware its "
+                        "network is configured for. Usually the device has never checked "
+                        "in, is offline, or an upgrade is pending. Its actual version is "
+                        "unknown, so it can't be compared with the baseline."
+                    ),
+                    remediation=(
+                        "Confirm the device is online and checking in to Dashboard, then "
+                        "review Organization > Firmware upgrades for a pending or failed "
+                        "upgrade. Re-run this audit once it reports a version."
+                    ),
+                ))
+                continue
 
             if running is None or target is None:
                 findings.append(Finding(
