@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: python -m pytest -q
+      - name: Demo pipeline produces a report with no setup
+        if: hashFiles('src/audit.py') != ''
+        run: |
+          python -m src.audit --demo --format all --output /tmp/ci_report
+          test -s /tmp/ci_report.html
+          test -s /tmp/ci_report.csv
+          grep -q "Configuration Drift Assessment" /tmp/ci_report.html
+
+  read-only-guarantee:
+    # The README claims this tool cannot change a Meraki network. That claim is
+    # enforced here rather than trusted, so it cannot quietly stop being true.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No HTTP write verbs in src/
+        run: |
+          if grep -rnE '(session|requests|client)\s*\.\s*(post|put|patch|delete|request)\s*\(' src/; then
+            echo "::error::Write-capable HTTP call found in src/. This tool is read-only by design."
+            exit 1
+          fi
+          echo "OK - no write operations in src/"
+      - name: Only meraki_client.py touches the network
+        run: |
+          offenders=$(grep -rlE '^\s*(import requests|from requests)' src/ | grep -v 'src/meraki_client.py' || true)
+          if [ -n "$offenders" ]; then
+            echo "::error::requests imported outside the client: $offenders"
+            exit 1
+          fi
+          echo "OK - network access is confined to src/meraki_client.py"
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: No Meraki API key committed anywhere in history
+        run: |
+          # Dashboard API keys are 40 lowercase hex characters. Commit SHAs in
+          # `git log` headers are the same shape, so only diff content lines
+          # (+/-) are scanned.
+          if git log -p --all --format='' | grep -E '^[+-]' | grep -nE '\b[0-9a-f]{40}\b'; then
+            echo "::error::Possible Meraki API key found in git history."
+            exit 1
+          fi
+          echo "OK - no key-shaped strings in history"
+      - name: .env is not tracked
+        run: |
+          if git ls-files --error-unmatch .env 2>/dev/null; then
+            echo "::error::.env is tracked by git."
+            exit 1
+          fi
+          echo "OK - .env is not tracked"
