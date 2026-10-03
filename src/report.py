@@ -182,12 +182,9 @@ def build_verdict(
         if top_n > second_n and top_n / len(findings) >= 0.4:
             paragraphs.append(
                 f"Drift is not evenly spread. {top} accounts for {top_n} of the "
-                f"{len(findings)} findings. In practice, configuration drift "
-                "concentrates where change happened most recently, such as a cutover, "
-                "a hardware swap or a vendor visit, because that is where configuration "
-                "was last done by hand under time pressure. Reviewing the most recent "
-                "change at that site is likely to be more productive than reviewing "
-                "each finding in isolation."
+                f"{len(findings)} findings. Reviewing that site's recent changes as a "
+                "whole is likely to be more productive than working through its "
+                "findings one at a time."
             )
 
     if findings:
