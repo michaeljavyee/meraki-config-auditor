@@ -155,14 +155,14 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
     <tr>
       <th>Network</th>
       <th class="num">Devices</th>
-      {% for key, label in category_labels.items() %}<th style="text-align:center">{{ label }}</th>{% endfor %}
+      {% for key, label in category_labels.items() %}<th style="text-align:center" title="{{ label }}">{{ category_short.get(key, label) }}</th>{% endfor %}
       <th class="num">Total</th>
     </tr>
   </thead>
   <tbody>
   {% for row in site_matrix %}
     <tr>
-      <td><strong>{{ row.name }}</strong>{% if row.tags %}<br>{% for t in row.tags %}<span class="tag">{{ t }}</span>{% endfor %}{% endif %}</td>
+      <td style="white-space:nowrap"><strong>{{ row.name }}</strong>{% if row.tags %}<br>{% for t in row.tags %}<span class="tag">{{ t }}</span>{% endfor %}{% endif %}</td>
       <td class="num">{{ row.devices }}</td>
       {% for key, cell in row.cells.items() %}
       <td class="cell {{ cell.worst }}">{{ cell.count if cell.count else '—' }}</td>

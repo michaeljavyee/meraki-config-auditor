@@ -28,6 +28,12 @@ trunks:
   uplink_port_tags: [uplink]             # a trunk with one of these tags is an uplink
   uplink_name_patterns: [uplink]         # ...or whose name contains one of these
 
+nac:                              # 802.1X / NAC posture check
+  required_on_access_ports: true   # enabled access ports must enforce an access policy
+  exempt_port_tags: [uplink, camera, nac-exempt]   # ...unless tagged with one of these
+  guest_vlan_roles: [guest]        # roles (from `vlans`) allowed as guest/failed-auth VLAN
+  min_radius_servers: 2            # fewer is a single point of failure
+
 firewall:
   l3_rules:                        # MX outbound rules, in order, without the default rule
     - comment: Guest cannot reach internal

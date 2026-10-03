@@ -113,6 +113,33 @@ traced; it doesn't claim which cause it is.
 **IPv6 and DNS are out of scope.** Only IPv4 subnets, pools and reservations
 are reconciled.
 
+## 802.1X / NAC check
+
+**Outcomes are inferred from Dashboard's client record, not from RADIUS.** A
+wired client on an enforcing port with an 802.1X identity in `user` counts as
+802.1X; with no identity, as MAB; in the policy's guest or failed-auth VLAN,
+as failed. If RADIUS assigns VLANs dynamically, a legitimately authenticated
+client can sit in a VLAN the check reads as the failed-auth VLAN. The fields
+used (`user`, `switchport`, `recentDeviceSerial`, `os`) come from the
+documented clients endpoint and haven't been checked against a live org yet.
+
+**"General-purpose computer" comes from Dashboard's OS fingerprint.** A
+laptop reported with no OS isn't flagged when it uses MAB; a thin client
+fingerprinted as Linux is. The finding names the MAC and OS so either is easy
+to check.
+
+**Exemptions are by tag.** A camera port that isn't tagged `camera` (or another
+tag in `nac.exempt_port_tags`) counts as a coverage gap. That's deliberate:
+an exemption nobody wrote down looks exactly like a port nobody configured.
+
+**Fail-open is reported, not judged.** Critical-auth into a data VLAN is
+MEDIUM because it is often the right call for availability. The finding asks
+for it to be a recorded decision with RADIUS monitoring, not for it to be
+removed.
+
+**Wireless 802.1X isn't covered here.** SSID authentication mode is checked by
+the SSID check; RADIUS behaviour on wireless isn't assessed.
+
 ## General
 
 **A clean report means "matches the baseline", not "is secure".** The tool

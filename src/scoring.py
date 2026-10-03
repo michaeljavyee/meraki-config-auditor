@@ -74,6 +74,17 @@ CATEGORY_LABELS = {
 }
 
 
+# Column headers for the sites-at-a-glance matrix, where width is tight.
+CATEGORY_SHORT = {
+    CAT_VLAN_TRUNK: "Trunks",
+    CAT_FIREWALL: "Firewall",
+    CAT_SSID: "SSIDs",
+    CAT_FIRMWARE: "Firmware",
+    CAT_IPAM: "IPAM",
+    CAT_NAC: "802.1X",
+}
+
+
 @dataclass
 class Finding:
     """One audit result.

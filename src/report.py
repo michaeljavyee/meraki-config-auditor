@@ -19,6 +19,7 @@ from . import __version__
 from .baseline import Baseline
 from .scoring import (
     CATEGORY_LABELS,
+    CATEGORY_SHORT,
     CRITICAL,
     HIGH,
     LOW,
@@ -103,6 +104,7 @@ def render_html(
         inventory=inventory,
         site_matrix=build_site_matrix(findings, networks, inventory),
         category_labels=CATEGORY_LABELS,
+        category_short=CATEGORY_SHORT,
         counts=counts,
         verdict=build_verdict(findings, networks, counts),
         roadmap=build_roadmap(findings),

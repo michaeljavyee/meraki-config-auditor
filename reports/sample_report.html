@@ -122,7 +122,7 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
   <div class="meta">
     <div><strong>Source</strong><br>Bundled demo fixtures</div>
     <div><strong>Baseline</strong><br>Cedar Valley Logistics network standard &middot; v2026.09</div>
-    <div><strong>Assessment date</strong><br>03 October 2026, 07:52 UTC</div>
+    <div><strong>Assessment date</strong><br>03 October 2026, 07:59 UTC</div>
     <div><strong>Access level</strong><br>Read-only (GET only)</div>
     <div><strong>Networks / devices</strong><br>3 / 17</div>
   </div>
@@ -138,14 +138,14 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
 
 <div class="scores">
   <div class="score critical"><div class="n">1</div><div class="l">critical</div></div>
-  <div class="score high"><div class="n">6</div><div class="l">high</div></div>
-  <div class="score medium"><div class="n">6</div><div class="l">medium</div></div>
-  <div class="score low"><div class="n">4</div><div class="l">low</div></div>
+  <div class="score high"><div class="n">9</div><div class="l">high</div></div>
+  <div class="score medium"><div class="n">10</div><div class="l">medium</div></div>
+  <div class="score low"><div class="n">5</div><div class="l">low</div></div>
   <div class="score"><div class="n">3</div><div class="l">Networks</div></div>
 </div>
 
 <div class="verdict">
-<p>This audit compared 3 networks against the declared standard and found 17 deviations. 1 finding is breaking something now. The most significant is at Depot-West: VLAN 40 (cameras) is in use on 5 access ports but is not carried on the switch&#39;s uplink trunk. Those ports have no path off the switch.</p><p>Drift is not evenly spread. Depot-East accounts for 8 of the 17 findings. Reviewing that site&#39;s recent changes as a whole is likely to be more productive than working through its findings one at a time.</p><p>None of these findings needed privileged access or live traffic to detect. Every one is visible in Dashboard configuration and was found by comparing it against a written standard. Running this comparison before closing a network change, rather than after the next outage, is the main recommendation of this report.</p></div>
+<p>This audit compared 3 networks against the declared standard and found 25 deviations. 1 finding is breaking something now. The most significant is at Depot-West: VLAN 40 (cameras) is in use on 5 access ports but is not carried on the switch&#39;s uplink trunk. Those ports have no path off the switch.</p><p>Drift is not evenly spread. Depot-East accounts for 12 of the 25 findings. Reviewing that site&#39;s recent changes as a whole is likely to be more productive than working through its findings one at a time.</p><p>None of these findings needed privileged access or live traffic to detect. Every one is visible in Dashboard configuration and was found by comparing it against a written standard. Running this comparison before closing a network change, rather than after the next outage, is the main recommendation of this report.</p></div>
 
 <h3>Breaking something now</h3>
 <ul class="plain">
@@ -162,39 +162,42 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
     <tr>
       <th>Network</th>
       <th class="num">Devices</th>
-<th style="text-align:center">VLAN / 802.1Q trunk</th><th style="text-align:center">L3 firewall policy</th><th style="text-align:center">Wireless SSID</th><th style="text-align:center">Firmware</th><th style="text-align:center">Address space (IPAM)</th>      <th class="num">Total</th>
+<th style="text-align:center" title="VLAN / 802.1Q trunk">Trunks</th><th style="text-align:center" title="L3 firewall policy">Firewall</th><th style="text-align:center" title="Wireless SSID">SSIDs</th><th style="text-align:center" title="Firmware">Firmware</th><th style="text-align:center" title="Address space (IPAM)">IPAM</th><th style="text-align:center" title="802.1X / NAC">802.1X</th>      <th class="num">Total</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Depot-East</strong><br><span class="tag">depot</span></td>
+      <td style="white-space:nowrap"><strong>Depot-East</strong><br><span class="tag">depot</span></td>
       <td class="num">5</td>
       <td class="cell high">1</td>
       <td class="cell medium">1</td>
       <td class="cell medium">2</td>
       <td class="cell low">1</td>
       <td class="cell high">3</td>
-      <td class="num"><strong>8</strong></td>
+      <td class="cell high">4</td>
+      <td class="num"><strong>12</strong></td>
     </tr>
     <tr>
-      <td><strong>Depot-West</strong><br><span class="tag">depot</span><span class="tag">cutover-2026-09</span></td>
+      <td style="white-space:nowrap"><strong>Depot-West</strong><br><span class="tag">depot</span><span class="tag">cutover-2026-09</span></td>
       <td class="num">6</td>
       <td class="cell critical">1</td>
       <td class="cell high">1</td>
       <td class="cell high">1</td>
       <td class="cell medium">2</td>
       <td class="cell medium">1</td>
-      <td class="num"><strong>6</strong></td>
+      <td class="cell high">1</td>
+      <td class="num"><strong>7</strong></td>
     </tr>
     <tr>
-      <td><strong>HQ</strong><br><span class="tag">hq</span></td>
+      <td style="white-space:nowrap"><strong>HQ</strong><br><span class="tag">hq</span></td>
       <td class="num">6</td>
       <td class="cell medium">1</td>
       <td class="cell ">—</td>
       <td class="cell ">—</td>
       <td class="cell ">—</td>
       <td class="cell high">2</td>
-      <td class="num"><strong>3</strong></td>
+      <td class="cell high">3</td>
+      <td class="num"><strong>6</strong></td>
     </tr>
   </tbody>
 </table>
@@ -545,10 +548,10 @@ leases, so utilisation here errs high.</p>
       <td class="num">—</td>
       <td class="num">—</td>
       <td class="num">253</td>
-      <td class="num">0</td>
+      <td class="num">2</td>
       <td>
-        <div class="bar"><span class="low" style="width: 0%"></span></div>
-        <span class="mono">0%</span>
+        <div class="bar"><span class="low" style="width: 1%"></span></div>
+        <span class="mono">1%</span>
       </td>
     </tr>
     <tr>
@@ -597,6 +600,91 @@ leases, so utilisation here errs high.</p>
 </table>
 </div>
 
+<h3>802.1X posture <span class="mono">(6 switches)</span></h3>
+<p>Enabled access ports by enforcement, and how wired clients seen in the last
+7 days were admitted. A client on an enforcing port with an 802.1X identity
+authenticated; one without came in through MAB; one in the policy's guest or
+failed-auth VLAN failed.</p>
+<div class="scroll">
+<table>
+  <thead><tr><th>Network</th><th>Switch</th><th class="num">Access ports</th><th class="num">Enforcing</th><th class="num">Exempt</th><th class="num">Open</th><th class="num">802.1X</th><th class="num">MAB</th><th class="num">Failed</th><th class="num">On open ports</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Depot-East</td>
+      <td><strong>SW-EAST-CORE</strong></td>
+      <td class="num">3</td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td class="num ">—</td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td class="num ">—</td>
+      <td class="num">—</td>
+    </tr>
+    <tr>
+      <td>Depot-East</td>
+      <td><strong>SW-EAST-IDF1</strong></td>
+      <td class="num">3</td>
+      <td class="num">—</td>
+      <td class="num">2</td>
+      <td class="num cell high">1</td>
+      <td class="num">—</td>
+      <td class="num">—</td>
+      <td class="num ">—</td>
+      <td class="num">—</td>
+    </tr>
+    <tr>
+      <td>Depot-West</td>
+      <td><strong>SW-WEST-CORE</strong></td>
+      <td class="num">2</td>
+      <td class="num">—</td>
+      <td class="num">—</td>
+      <td class="num cell high">2</td>
+      <td class="num">—</td>
+      <td class="num">—</td>
+      <td class="num ">—</td>
+      <td class="num">2</td>
+    </tr>
+    <tr>
+      <td>Depot-West</td>
+      <td><strong>SW-WEST-IDF1</strong></td>
+      <td class="num">6</td>
+      <td class="num">—</td>
+      <td class="num">5</td>
+      <td class="num cell high">1</td>
+      <td class="num">—</td>
+      <td class="num">—</td>
+      <td class="num ">—</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td>HQ</td>
+      <td><strong>SW-HQ-CORE</strong></td>
+      <td class="num">5</td>
+      <td class="num">4</td>
+      <td class="num">1</td>
+      <td class="num ">—</td>
+      <td class="num">4</td>
+      <td class="num">2</td>
+      <td class="num ">—</td>
+      <td class="num">—</td>
+    </tr>
+    <tr>
+      <td>HQ</td>
+      <td><strong>SW-HQ-IDF1</strong></td>
+      <td class="num">5</td>
+      <td class="num">4</td>
+      <td class="num">1</td>
+      <td class="num ">—</td>
+      <td class="num">2</td>
+      <td class="num">1</td>
+      <td class="num cell medium">1</td>
+      <td class="num">—</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 <!-- 3 ------------------------------------------------------------------ -->
 <h2>3 &nbsp;&middot;&nbsp; Findings</h2>
 
@@ -629,6 +717,18 @@ leases, so utilisation here errs high.</p>
   <div class="finding-head">
     <span class="pill high">high</span>
     <span class="id">DRIFT-003</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>Access policy &#39;Dispatch 802.1X&#39; uses Multi-Host mode.</h3>
+  <div class="where">Depot-East / access policy &#39;Dispatch 802.1X&#39;</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>accessPolicies[1]: hostMode=&#39;Multi-Host&#39;, type=&#39;802.1x&#39;.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>In Multi-Host mode the switch authenticates the first device on a port and then admits every device behind it without asking. An unmanaged switch or a hub under a desk turns one valid login into unlimited access for anything plugged into it. It&#39;s usually set this way to make exactly that kind of desk work.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Dashboard &gt; Switching &gt; Access policies &gt; Dispatch 802.1X: change host mode to Multi-Auth (each device authenticates) or Multi-Domain (one data + one voice device). Replace the unmanaged switch under the desk with a port per device, or a managed switch.</p></div>
+</div>
+<div class="finding high">
+  <div class="finding-head">
+    <span class="pill high">high</span>
+    <span class="id">DRIFT-004</span>
     <span class="id">VLAN / 802.1Q trunk</span>
   </div>
   <h3>Native VLAN mismatch across one link: SW-EAST-CORE port 23 uses native VLAN 1, SW-EAST-IDF1 port 8 uses 10.</h3>
@@ -640,7 +740,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding high">
   <div class="finding-head">
     <span class="pill high">high</span>
-    <span class="id">DRIFT-004</span>
+    <span class="id">DRIFT-005</span>
     <span class="id">L3 firewall policy</span>
   </div>
   <h3>A non-standard allow rule above the baseline overrides &#39;Guest cannot reach internal&#39;, so the baseline rule never takes effect.</h3>
@@ -652,7 +752,19 @@ leases, so utilisation here errs high.</p>
 <div class="finding high">
   <div class="finding-head">
     <span class="pill high">high</span>
-    <span class="id">DRIFT-005</span>
+    <span class="id">DRIFT-006</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>No access port at Depot-West enforces 802.1X or any access policy.</h3>
+  <div class="where">Depot-West / all access ports</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>3 enabled access ports without an access policy or exempt tag. SW-WEST-CORE: 1 &#39;Dispatch 1&#39;, 2 &#39;Dispatch 2&#39;; SW-WEST-IDF1: 6 &#39;Wash bay PC&#39;.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>Anything plugged into these ports is on the network with no identity check: a visitor&#39;s laptop, a contractor&#39;s device, or a consumer router handing out its own addresses. Network access is then controlled by who can reach a wall jack. Here that&#39;s true of the whole site.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Create an access policy for the site (Dashboard &gt; Switching &gt; Access policies), assign it to user-facing ports, and tag ports that are deliberately exempt (cameras, kiosks) so the exemption is visible.</p></div>
+</div>
+<div class="finding high">
+  <div class="finding-head">
+    <span class="pill high">high</span>
+    <span class="id">DRIFT-007</span>
     <span class="id">Wireless SSID</span>
   </div>
   <h3>Enabled SSID &#39;CVL-Install&#39; is not part of the standard and requires no authentication.</h3>
@@ -664,7 +776,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding high">
   <div class="finding-head">
     <span class="pill high">high</span>
-    <span class="id">DRIFT-006</span>
+    <span class="id">DRIFT-008</span>
     <span class="id">Address space (IPAM)</span>
   </div>
   <h3>Reserved address 10.10.10.50 for &#39;printer-lobby&#39; is in use by a different device (&#39;conference-room-tv&#39;).</h3>
@@ -676,7 +788,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding high">
   <div class="finding-head">
     <span class="pill high">high</span>
-    <span class="id">DRIFT-007</span>
+    <span class="id">DRIFT-009</span>
     <span class="id">Address space (IPAM)</span>
   </div>
   <h3>DHCP pool is 93% used (50 of 54 addresses).</h3>
@@ -685,10 +797,22 @@ leases, so utilisation here errs high.</p>
   <div class="block"><div class="label">Business risk</div><p>When the pool runs out, new devices get no address and fail silently: a guest&#39;s phone shows connected with no internet, a new laptop can&#39;t reach anything. It happens at peak, which is the worst time to diagnose it.</p></div>
   <div class="block"><div class="label">Remediation</div><p>Reclaim before expanding: remove reserved ranges and reservations that no longer serve anything (Dashboard &gt; Security &amp; SD-WAN &gt; Addressing &amp; VLANs &gt; DHCP), and shorten the lease time on transient networks like guest. If it&#39;s still tight, widen the subnet, which is a planned change because it touches the VLAN&#39;s gateway and firewall references.</p></div>
 </div>
+<div class="finding high">
+  <div class="finding-head">
+    <span class="pill high">high</span>
+    <span class="id">DRIFT-010</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>&#39;laptop-06&#39; (Windows 11) got onto VLAN 10 by MAC address, not 802.1X.</h3>
+  <div class="where">HQ / SW-HQ-IDF1 port 3</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>Client 00:18:0a:c1:00:06 &#39;laptop-06&#39;, os=&#39;Windows 11&#39;, on SW-HQ-IDF1 port 3 (&#39;Corp 802.1X&#39;, Hybrid authentication) in VLAN 10 with no 802.1X identity recorded in the last 7 days.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>A general-purpose computer should authenticate with its own credentials. One that got in by MAC address almost always has a broken or disabled supplicant, and its MAC was added to the RADIUS allow list to close the ticket. Anyone who reads that MAC off the device and sets it on their own gets the same access.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Fix the supplicant on &#39;laptop-06&#39; so it authenticates with 802.1X, then remove its MAC from the MAB allow list on the RADIUS server.</p></div>
+</div>
 <div class="finding medium">
   <div class="finding-head">
     <span class="pill medium">medium</span>
-    <span class="id">DRIFT-008</span>
+    <span class="id">DRIFT-011</span>
     <span class="id">L3 firewall policy</span>
   </div>
   <h3>Allow rule not in the standard, from any source to any destination on port 161.</h3>
@@ -700,7 +824,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding medium">
   <div class="finding-head">
     <span class="pill medium">medium</span>
-    <span class="id">DRIFT-009</span>
+    <span class="id">DRIFT-012</span>
     <span class="id">Address space (IPAM)</span>
   </div>
   <h3>Depot-East VLAN 10 (10.20.10.0/24) overlaps HQ VLAN 50 (10.20.10.0/24).</h3>
@@ -712,7 +836,31 @@ leases, so utilisation here errs high.</p>
 <div class="finding medium">
   <div class="finding-head">
     <span class="pill medium">medium</span>
-    <span class="id">DRIFT-010</span>
+    <span class="id">DRIFT-013</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>1 access port on SW-EAST-IDF1 enforces no access policy (3).</h3>
+  <div class="where">Depot-East / SW-EAST-IDF1</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>port 3 &#39;Shop PC&#39;: accessPolicyType=&#39;Open&#39;, VLAN 10.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>Anything plugged into these ports is on the network with no identity check: a visitor&#39;s laptop, a contractor&#39;s device, or a consumer router handing out its own addresses. Network access is then controlled by who can reach a wall jack.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Assign the site&#39;s access policy to these ports on SW-EAST-IDF1, or tag them &#39;nac-exempt&#39; with a note on why.</p></div>
+</div>
+<div class="finding medium">
+  <div class="finding-head">
+    <span class="pill medium">medium</span>
+    <span class="id">DRIFT-014</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>&#39;Dispatch 802.1X&#39; has 1 RADIUS server; the standard is at least 2.</h3>
+  <div class="where">Depot-East / access policy &#39;Dispatch 802.1X&#39;</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>radiusServers: 10.10.1.10.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>A single RADIUS server is a single point of failure for every port on this policy. When it&#39;s patched, rebooted or unreachable, either nobody can authenticate or (with fail-open) everybody can.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Dashboard &gt; Switching &gt; Access policies &gt; Dispatch 802.1X: add a second RADIUS server, ideally at a different site.</p></div>
+</div>
+<div class="finding medium">
+  <div class="finding-head">
+    <span class="pill medium">medium</span>
+    <span class="id">DRIFT-015</span>
     <span class="id">Wireless SSID</span>
   </div>
   <h3>SSID &#39;CVL-Guest&#39; differs from the standard in wpaEncryptionMode.</h3>
@@ -724,7 +872,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding medium">
   <div class="finding-head">
     <span class="pill medium">medium</span>
-    <span class="id">DRIFT-011</span>
+    <span class="id">DRIFT-016</span>
     <span class="id">Firmware</span>
   </div>
   <h3>Firmware is a different major version (switch-16-8-1, target switch-17-1-4).</h3>
@@ -736,7 +884,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding medium">
   <div class="finding-head">
     <span class="pill medium">medium</span>
-    <span class="id">DRIFT-012</span>
+    <span class="id">DRIFT-017</span>
     <span class="id">Address space (IPAM)</span>
   </div>
   <h3>Client &#39;Wash bay PC&#39; is using 192.168.1.50, which belongs to no VLAN in Depot-West.</h3>
@@ -748,7 +896,31 @@ leases, so utilisation here errs high.</p>
 <div class="finding medium">
   <div class="finding-head">
     <span class="pill medium">medium</span>
-    <span class="id">DRIFT-013</span>
+    <span class="id">DRIFT-018</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>&#39;contractor-laptop&#39; is failing 802.1X on a desk port and landing in VLAN 30 (guest).</h3>
+  <div class="where">HQ / SW-HQ-IDF1 port 4</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>Client 00:18:0a:c3:00:00 &#39;contractor-laptop&#39;, os=&#39;Windows 10&#39;, on SW-HQ-IDF1 port 4 (&#39;Corp 802.1X&#39;) in VLAN 30, the policy&#39;s guest / failed-auth VLAN.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>The policy is doing its job, and someone is quietly working on the guest network from a desk. It&#39;s an expired certificate, an unenrolled device or an unauthorised one, and today nobody would know which.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Identify the owner of 00:18:0a:c3:00:00; enrol the device or remove it. Consider alerting on failed-auth VLAN assignments.</p></div>
+</div>
+<div class="finding medium">
+  <div class="finding-head">
+    <span class="pill medium">medium</span>
+    <span class="id">DRIFT-019</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>&#39;Corp 802.1X&#39; fails open into VLAN 10 (corp) when RADIUS is unreachable.</h3>
+  <div class="where">HQ / access policy &#39;Corp 802.1X&#39;</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>accessPolicies[1].radius.criticalAuth.dataVlanId = 10. RADIUS servers: 10.10.1.10, 10.10.1.11.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>If the RADIUS servers can&#39;t be reached, every port on this policy admits every device into that VLAN. That keeps desks working during an outage, which is a reasonable choice, and it also means anyone who can disrupt RADIUS disables 802.1X. It should be a written decision with monitoring on RADIUS reachability, not a default nobody remembers setting.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Either record the fail-open decision and alert on RADIUS reachability, or point critical auth at a restricted VLAN instead: Dashboard &gt; Switching &gt; Access policies &gt; Corp 802.1X &gt; Critical authentication.</p></div>
+</div>
+<div class="finding medium">
+  <div class="finding-head">
+    <span class="pill medium">medium</span>
+    <span class="id">DRIFT-020</span>
     <span class="id">VLAN / 802.1Q trunk</span>
   </div>
   <h3>Uplink trunk does not carry VLAN 40 (cameras), which the standard requires on every uplink.</h3>
@@ -760,7 +932,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding low">
   <div class="finding-head">
     <span class="pill low">low</span>
-    <span class="id">DRIFT-014</span>
+    <span class="id">DRIFT-021</span>
     <span class="id">Firmware</span>
   </div>
   <h3>Running firmware ahead of the approved version (wireless-31-1).</h3>
@@ -772,7 +944,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding low">
   <div class="finding-head">
     <span class="pill low">low</span>
-    <span class="id">DRIFT-015</span>
+    <span class="id">DRIFT-022</span>
     <span class="id">Address space (IPAM)</span>
   </div>
   <h3>Reservation &#39;old-printer-2nd-floor&#39; (10.20.10.40) is for a device not seen in the last 7 days.</h3>
@@ -784,7 +956,19 @@ leases, so utilisation here errs high.</p>
 <div class="finding low">
   <div class="finding-head">
     <span class="pill low">low</span>
-    <span class="id">DRIFT-016</span>
+    <span class="id">DRIFT-023</span>
+    <span class="id">802.1X / NAC</span>
+  </div>
+  <h3>RADIUS accounting is off for &#39;Dispatch 802.1X&#39;.</h3>
+  <div class="where">Depot-East / access policy &#39;Dispatch 802.1X&#39;</div>
+  <div class="block evidence"><div class="label">Evidence</div><p>accessPolicies[1].radiusAccountingEnabled = false.</p></div>
+  <div class="block"><div class="label">Business risk</div><p>Without accounting, the RADIUS server knows who authenticated but not for how long or from which port, which is the record an incident investigation needs.</p></div>
+  <div class="block"><div class="label">Remediation</div><p>Dashboard &gt; Switching &gt; Access policies &gt; Dispatch 802.1X: enable RADIUS accounting.</p></div>
+</div>
+<div class="finding low">
+  <div class="finding-head">
+    <span class="pill low">low</span>
+    <span class="id">DRIFT-024</span>
     <span class="id">Wireless SSID</span>
   </div>
   <h3>SSID &#39;CVL-Corp&#39; differs from the standard in bandSelection.</h3>
@@ -796,7 +980,7 @@ leases, so utilisation here errs high.</p>
 <div class="finding low">
   <div class="finding-head">
     <span class="pill low">low</span>
-    <span class="id">DRIFT-017</span>
+    <span class="id">DRIFT-025</span>
     <span class="id">Firmware</span>
   </div>
   <h3>Firmware is behind the approved version (wired-18-1-7, target wired-18-2-11).</h3>
@@ -828,7 +1012,7 @@ and belongs in the next change window.</p>
     <span class="when">This month (30 days)</span>
   </div>
   <ol class="actions">
-<li>Depot-East / VLAN 1 (Management): Fixed IP reservation &#39;ups-mgmt&#39; (10.20.2.15) is outside the VLAN&#39;s subnet 10.20.1.0/24.<br><span class="who">Dashboard &gt; Security &amp; SD-WAN &gt; Addressing &amp; VLANs &gt; VLAN 1 (Management) &gt; DHCP &gt; Fixed IP assignments: correct &#39;ups-mgmt&#39; to an address in 10.20.1.0/24, then update whatever references the old address.</span></li><li>Depot-East / SW-EAST-CORE:23 &lt;-&gt; SW-EAST-IDF1:8: Native VLAN mismatch across one link: SW-EAST-CORE port 23 uses native VLAN 1, SW-EAST-IDF1 port 8 uses 10.<br><span class="who">Pick the standard native VLAN (1) and set it on both SW-EAST-CORE port 23 and SW-EAST-IDF1 port 8 in the same change window.</span></li><li>Depot-West / L3 outbound rules: A non-standard allow rule above the baseline overrides &#39;Guest cannot reach internal&#39;, so the baseline rule never takes effect.<br><span class="who">Confirm with the change owner whether the rule is still needed.</span></li><li>Depot-West / SSID &#39;CVL-Install&#39;: Enabled SSID &#39;CVL-Install&#39; is not part of the standard and requires no authentication.<br><span class="who">If &#39;CVL-Install&#39; is no longer needed, disable it: Dashboard &gt; Wireless &gt; SSIDs.</span></li><li>HQ / VLAN 10 (Corp): Reserved address 10.10.10.50 for &#39;printer-lobby&#39; is in use by a different device (&#39;conference-room-tv&#39;).<br><span class="who">Move &#39;conference-room-tv&#39; to DHCP or to a documented static address outside the pool, then confirm 10.10.10.50 is free.</span></li><li>HQ / VLAN 30 (Guest): DHCP pool is 93% used (50 of 54 addresses).<br><span class="who">Reclaim before expanding: remove reserved ranges and reservations that no longer serve anything (Dashboard &gt; Security &amp; SD-WAN &gt; Addressing &amp; VLANs &gt; DHCP), and shorten the lease time on transient networks like guest.</span></li>  </ol>
+<li>Depot-East / VLAN 1 (Management): Fixed IP reservation &#39;ups-mgmt&#39; (10.20.2.15) is outside the VLAN&#39;s subnet 10.20.1.0/24.<br><span class="who">Dashboard &gt; Security &amp; SD-WAN &gt; Addressing &amp; VLANs &gt; VLAN 1 (Management) &gt; DHCP &gt; Fixed IP assignments: correct &#39;ups-mgmt&#39; to an address in 10.20.1.0/24, then update whatever references the old address.</span></li><li>Depot-East / access policy &#39;Dispatch 802.1X&#39;: Access policy &#39;Dispatch 802.1X&#39; uses Multi-Host mode.<br><span class="who">Dashboard &gt; Switching &gt; Access policies &gt; Dispatch 802.1X: change host mode to Multi-Auth (each device authenticates) or Multi-Domain (one data + one voice device).</span></li><li>Depot-East / SW-EAST-CORE:23 &lt;-&gt; SW-EAST-IDF1:8: Native VLAN mismatch across one link: SW-EAST-CORE port 23 uses native VLAN 1, SW-EAST-IDF1 port 8 uses 10.<br><span class="who">Pick the standard native VLAN (1) and set it on both SW-EAST-CORE port 23 and SW-EAST-IDF1 port 8 in the same change window.</span></li><li>Depot-West / L3 outbound rules: A non-standard allow rule above the baseline overrides &#39;Guest cannot reach internal&#39;, so the baseline rule never takes effect.<br><span class="who">Confirm with the change owner whether the rule is still needed.</span></li><li>Depot-West / all access ports: No access port at Depot-West enforces 802.1X or any access policy.<br><span class="who">Create an access policy for the site (Dashboard &gt; Switching &gt; Access policies), assign it to user-facing ports, and tag ports that are deliberately exempt (cameras, kiosks) so the exemption is visible.</span></li><li>Depot-West / SSID &#39;CVL-Install&#39;: Enabled SSID &#39;CVL-Install&#39; is not part of the standard and requires no authentication.<br><span class="who">If &#39;CVL-Install&#39; is no longer needed, disable it: Dashboard &gt; Wireless &gt; SSIDs.</span></li><li>HQ / VLAN 10 (Corp): Reserved address 10.10.10.50 for &#39;printer-lobby&#39; is in use by a different device (&#39;conference-room-tv&#39;).<br><span class="who">Move &#39;conference-room-tv&#39; to DHCP or to a documented static address outside the pool, then confirm 10.10.10.50 is free.</span></li><li>HQ / VLAN 30 (Guest): DHCP pool is 93% used (50 of 54 addresses).<br><span class="who">Reclaim before expanding: remove reserved ranges and reservations that no longer serve anything (Dashboard &gt; Security &amp; SD-WAN &gt; Addressing &amp; VLANs &gt; DHCP), and shorten the lease time on transient networks like guest.</span></li><li>HQ / SW-HQ-IDF1 port 3: &#39;laptop-06&#39; (Windows 11) got onto VLAN 10 by MAC address, not 802.1X.<br><span class="who">Fix the supplicant on &#39;laptop-06&#39; so it authenticates with 802.1X, then remove its MAC from the MAB allow list on the RADIUS server.</span></li>  </ol>
 </div>
 <div class="roadmap-phase">
   <div class="phase-head">
@@ -837,7 +1021,7 @@ and belongs in the next change window.</p>
     <span class="when">This quarter (90 days)</span>
   </div>
   <ol class="actions">
-<li>Depot-East / L3 outbound rules: Allow rule not in the standard, from any source to any destination on port 161.<br><span class="who">Either adopt it into the baseline with an owner and a reason, or remove it.</span></li><li>Depot-East VLAN 10 &amp; HQ VLAN 50: Depot-East VLAN 10 (10.20.10.0/24) overlaps HQ VLAN 50 (10.20.10.0/24).<br><span class="who">Renumber the newer or smaller of the two before any VPN between these sites, and allocate subnets from a documented per-site plan (e.g.</span></li><li>Depot-East / SSID &#39;CVL-Guest&#39;: SSID &#39;CVL-Guest&#39; differs from the standard in wpaEncryptionMode.<br><span class="who">Dashboard &gt; Wireless &gt; Access control &gt; SSID &#39;CVL-Guest&#39;: set wpaEncryptionMode to &#39;WPA2 only&#39;.</span></li><li>Depot-West / SW-WEST-IDF1: Firmware is a different major version (switch-16-8-1, target switch-17-1-4).<br><span class="who">Schedule SW-WEST-IDF1 for &#39;switch-17-1-4&#39;: Dashboard &gt; Organization &gt; Firmware upgrades &gt; select the device &gt; Schedule upgrade.</span></li><li>Depot-West / client &#39;Wash bay PC&#39;: Client &#39;Wash bay PC&#39; is using 192.168.1.50, which belongs to no VLAN in Depot-West.<br><span class="who">Find the device (00:18:0a:dd:00:01) from its switch port in Dashboard &gt; Network-wide &gt; Clients.</span></li><li>HQ / SW-HQ-IDF1 port 24: Uplink trunk does not carry VLAN 40 (cameras), which the standard requires on every uplink.<br><span class="who">Dashboard &gt; Switching &gt; Switch ports &gt; SW-HQ-IDF1 port 24 &gt; Allowed VLANs: add 40.</span></li>  </ol>
+<li>Depot-East / L3 outbound rules: Allow rule not in the standard, from any source to any destination on port 161.<br><span class="who">Either adopt it into the baseline with an owner and a reason, or remove it.</span></li><li>Depot-East VLAN 10 &amp; HQ VLAN 50: Depot-East VLAN 10 (10.20.10.0/24) overlaps HQ VLAN 50 (10.20.10.0/24).<br><span class="who">Renumber the newer or smaller of the two before any VPN between these sites, and allocate subnets from a documented per-site plan (e.g.</span></li><li>Depot-East / SW-EAST-IDF1: 1 access port on SW-EAST-IDF1 enforces no access policy (3).<br><span class="who">Assign the site&#39;s access policy to these ports on SW-EAST-IDF1, or tag them &#39;nac-exempt&#39; with a note on why.</span></li><li>Depot-East / access policy &#39;Dispatch 802.1X&#39;: &#39;Dispatch 802.1X&#39; has 1 RADIUS server; the standard is at least 2.<br><span class="who">Dashboard &gt; Switching &gt; Access policies &gt; Dispatch 802.1X: add a second RADIUS server, ideally at a different site.</span></li><li>Depot-East / SSID &#39;CVL-Guest&#39;: SSID &#39;CVL-Guest&#39; differs from the standard in wpaEncryptionMode.<br><span class="who">Dashboard &gt; Wireless &gt; Access control &gt; SSID &#39;CVL-Guest&#39;: set wpaEncryptionMode to &#39;WPA2 only&#39;.</span></li><li>Depot-West / SW-WEST-IDF1: Firmware is a different major version (switch-16-8-1, target switch-17-1-4).<br><span class="who">Schedule SW-WEST-IDF1 for &#39;switch-17-1-4&#39;: Dashboard &gt; Organization &gt; Firmware upgrades &gt; select the device &gt; Schedule upgrade.</span></li><li>Depot-West / client &#39;Wash bay PC&#39;: Client &#39;Wash bay PC&#39; is using 192.168.1.50, which belongs to no VLAN in Depot-West.<br><span class="who">Find the device (00:18:0a:dd:00:01) from its switch port in Dashboard &gt; Network-wide &gt; Clients.</span></li><li>HQ / SW-HQ-IDF1 port 4: &#39;contractor-laptop&#39; is failing 802.1X on a desk port and landing in VLAN 30 (guest).<br><span class="who">Identify the owner of 00:18:0a:c3:00:00; enrol the device or remove it.</span></li><li>HQ / access policy &#39;Corp 802.1X&#39;: &#39;Corp 802.1X&#39; fails open into VLAN 10 (corp) when RADIUS is unreachable.<br><span class="who">Either record the fail-open decision and alert on RADIUS reachability, or point critical auth at a restricted VLAN instead: Dashboard &gt; Switching &gt; Access policies &gt; Corp 802.1X &gt; Critical authentication.</span></li><li>HQ / SW-HQ-IDF1 port 24: Uplink trunk does not carry VLAN 40 (cameras), which the standard requires on every uplink.<br><span class="who">Dashboard &gt; Switching &gt; Switch ports &gt; SW-HQ-IDF1 port 24 &gt; Allowed VLANs: add 40.</span></li>  </ol>
 </div>
 <div class="roadmap-phase">
   <div class="phase-head">
@@ -846,7 +1030,7 @@ and belongs in the next change window.</p>
     <span class="when">Backlog / next standards review</span>
   </div>
   <ol class="actions">
-<li>Depot-East / AP-EAST-01: Running firmware ahead of the approved version (wireless-31-1).<br><span class="who">If this is an intentional pilot, record it in the baseline.</span></li><li>Depot-East / VLAN 10 (Corp): Reservation &#39;old-printer-2nd-floor&#39; (10.20.10.40) is for a device not seen in the last 7 days.<br><span class="who">Confirm the device is gone, then delete the reservation.</span></li><li>Depot-East / SSID &#39;CVL-Corp&#39;: SSID &#39;CVL-Corp&#39; differs from the standard in bandSelection.<br><span class="who">Dashboard &gt; Wireless &gt; Access control &gt; SSID &#39;CVL-Corp&#39;: set bandSelection to &#39;Dual band operation with Band Steering&#39;.</span></li><li>Depot-West / MX-WEST: Firmware is behind the approved version (wired-18-1-7, target wired-18-2-11).<br><span class="who">Schedule MX-WEST for &#39;wired-18-2-11&#39;: Dashboard &gt; Organization &gt; Firmware upgrades &gt; select the device &gt; Schedule upgrade.</span></li>  </ol>
+<li>Depot-East / AP-EAST-01: Running firmware ahead of the approved version (wireless-31-1).<br><span class="who">If this is an intentional pilot, record it in the baseline.</span></li><li>Depot-East / VLAN 10 (Corp): Reservation &#39;old-printer-2nd-floor&#39; (10.20.10.40) is for a device not seen in the last 7 days.<br><span class="who">Confirm the device is gone, then delete the reservation.</span></li><li>Depot-East / access policy &#39;Dispatch 802.1X&#39;: RADIUS accounting is off for &#39;Dispatch 802.1X&#39;.<br><span class="who">Dashboard &gt; Switching &gt; Access policies &gt; Dispatch 802.1X: enable RADIUS accounting.</span></li><li>Depot-East / SSID &#39;CVL-Corp&#39;: SSID &#39;CVL-Corp&#39; differs from the standard in bandSelection.<br><span class="who">Dashboard &gt; Wireless &gt; Access control &gt; SSID &#39;CVL-Corp&#39;: set bandSelection to &#39;Dual band operation with Band Steering&#39;.</span></li><li>Depot-West / MX-WEST: Firmware is behind the approved version (wired-18-1-7, target wired-18-2-11).<br><span class="who">Schedule MX-WEST for &#39;wired-18-2-11&#39;: Dashboard &gt; Organization &gt; Firmware upgrades &gt; select the device &gt; Schedule upgrade.</span></li>  </ol>
 </div>
 
 <h3>Structural recommendations</h3>
@@ -871,8 +1055,8 @@ and belongs in the next change window.</p>
 <h2>5 &nbsp;&middot;&nbsp; Methodology, scope and limitations</h2>
 
 <div class="method-grid">
-  <div class="method-col"><h3>What was examined</h3><ul class="plain"><li>Uplink trunk allowed-VLAN lists against VLANs in use on each switch&#39;s access ports</li><li>Uplink trunk allowed-VLAN lists against the baseline&#39;s required VLANs</li><li>Native VLAN agreement across both ends of each discovered link, and against the baseline</li><li>MX L3 outbound firewall rules against the baseline policy, including rule order and shadowing</li><li>SSID authentication, encryption, VLAN and radio settings against the baseline</li><li>Running firmware per device against the baseline target for its product type</li><li>VLAN subnets for overlap within and between networks</li><li>DHCP pools against reserved ranges, fixed reservations and clients seen in the last 7 days</li><li>Fixed reservations that can&#39;t be served, are held by another device, or are for devices no longer seen</li><li>Clients using addresses outside every subnet in their network</li></ul></div>
-  <div class="method-col"><h3>What was not examined</h3><ul class="plain"><li>Switch access-port configuration drift (port security, 802.1X, STP guard) - planned</li><li>DNS, IPv6, and address space managed outside Meraki (external DHCP servers, data centre)</li><li>Orphaned or unused configuration objects (policy objects, group policies) - planned</li><li>Inbound firewall rules, port forwarding, 1:1 NAT, L7 and content filtering</li><li>Site-to-site VPN, SD-WAN and routing configuration</li><li>Live traffic, client data, and anything requiring packet capture</li><li>Configuration outside Meraki Dashboard (ISP equipment, third-party switches)</li><li>Any change to configuration. This tool cannot write.</li></ul></div>
+  <div class="method-col"><h3>What was examined</h3><ul class="plain"><li>Uplink trunk allowed-VLAN lists against VLANs in use on each switch&#39;s access ports</li><li>Uplink trunk allowed-VLAN lists against the baseline&#39;s required VLANs</li><li>Native VLAN agreement across both ends of each discovered link, and against the baseline</li><li>MX L3 outbound firewall rules against the baseline policy, including rule order and shadowing</li><li>SSID authentication, encryption, VLAN and radio settings against the baseline</li><li>Running firmware per device against the baseline target for its product type</li><li>VLAN subnets for overlap within and between networks</li><li>DHCP pools against reserved ranges, fixed reservations and clients seen in the last 7 days</li><li>Fixed reservations that can&#39;t be served, are held by another device, or are for devices no longer seen</li><li>Clients using addresses outside every subnet in their network</li><li>802.1X access policy design: host mode, guest / failed-auth and fail-open VLANs, RADIUS redundancy and accounting</li><li>Access ports that enforce no access policy and aren&#39;t tagged exempt</li><li>How wired clients on enforcing ports were admitted: 802.1X, MAB, or the failed-auth VLAN</li></ul></div>
+  <div class="method-col"><h3>What was not examined</h3><ul class="plain"><li>Switch access-port configuration drift (port security, 802.1X, STP guard) - planned</li><li>DNS, IPv6, and address space managed outside Meraki (external DHCP servers, data centre)</li><li>RADIUS server configuration, certificates, and policies applied by RADIUS (dynamic VLANs, ACLs)</li><li>Wireless 802.1X (covered by the SSID check&#39;s authentication mode only)</li><li>Orphaned or unused configuration objects (policy objects, group policies) - planned</li><li>Inbound firewall rules, port forwarding, 1:1 NAT, L7 and content filtering</li><li>Site-to-site VPN, SD-WAN and routing configuration</li><li>Live traffic, client data, and anything requiring packet capture</li><li>Configuration outside Meraki Dashboard (ISP equipment, third-party switches)</li><li>Any change to configuration. This tool cannot write.</li></ul></div>
 </div>
 
 <h3>Access and method</h3>
@@ -907,13 +1091,13 @@ and belongs in the next change window.</p>
   <li><strong>Firewall shadowing is computed structurally.</strong> CIDR containment is
       evaluated exactly; VLAN object references and FQDNs are compared by equality,
       so overlap between differently-expressed objects can be missed.</li>
-<li>Depot-East VLAN 20 (Voice): DHCP is &#39;Relay DHCP to another server&#39;, so pool utilisation there can&#39;t be assessed from Dashboard.</li>  <li><strong>Point-in-time.</strong> This reflects configuration as of 03 October 2026, 07:52 UTC.</li>
+<li>Depot-East VLAN 20 (Voice): DHCP is &#39;Relay DHCP to another server&#39;, so pool utilisation there can&#39;t be assessed from Dashboard.</li>  <li><strong>Point-in-time.</strong> This reflects configuration as of 03 October 2026, 07:59 UTC.</li>
 </ul>
 
 <footer>
-  Generated by <strong>meraki-config-auditor</strong> v0.3.0 &mdash; read-only
+  Generated by <strong>meraki-config-auditor</strong> v0.4.0 &mdash; read-only
   Meraki configuration drift assessment.<br>
-  03 October 2026, 07:52 UTC &middot; demonstration data</footer>
+  03 October 2026, 07:59 UTC &middot; demonstration data</footer>
 
 </div>
 </body>
