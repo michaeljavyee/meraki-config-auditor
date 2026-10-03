@@ -40,6 +40,7 @@ _ROUTES = [
     (r"/networks/([^/]+)/appliance/firewall/l3FirewallRules", "l3_firewall_rules", 1),
     (r"/networks/([^/]+)/wireless/ssids", "ssids", 1),
     (r"/networks/([^/]+)/topology/linkLayer", "topology", 1),
+    (r"/networks/([^/]+)/clients", "clients", 1),
 ]
 
 

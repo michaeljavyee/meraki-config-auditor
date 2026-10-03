@@ -18,6 +18,11 @@ from ..baseline import Baseline
 
 logger = logging.getLogger(__name__)
 
+# How far back to look for observed clients. The API allows up to 31 days;
+# a week covers a full working cycle without reaching back to devices that
+# have long since left.
+CLIENT_WINDOW_DAYS = 7
+
 
 class OrgContext:
     """Lazily-loaded, cached, read-only view of one Meraki organization."""
@@ -28,6 +33,9 @@ class OrgContext:
         self.org_id = str(org["id"])
         self.baseline = baseline
         self.scope_limitations: List[str] = []
+        # Per-VLAN address-space summary, filled in by the IPAM check and
+        # rendered as its own table in the report.
+        self.address_space: List[Dict[str, Any]] = []
 
         self._networks: Optional[List[Dict[str, Any]]] = None
         self._devices: Optional[List[Dict[str, Any]]] = None
@@ -128,6 +136,29 @@ class OrgContext:
         return self._network_resource(
             network_id, "ssids", f"/networks/{network_id}/wireless/ssids", []
         ) or []
+
+    def clients(self, network_id: str) -> List[Dict[str, Any]]:
+        """Clients seen in the last CLIENT_WINDOW_DAYS, or [] if unavailable.
+
+        Observed clients are evidence of what's actually using address space,
+        as opposed to what the configuration says should be. The endpoint is
+        paginated and can be large, so it is only read by checks that need it.
+        """
+        cache = self._per_network.setdefault(network_id, {})
+        if "clients" not in cache:
+            try:
+                cache["clients"] = list(self.client.paginate(
+                    f"/networks/{network_id}/clients",
+                    params={"timespan": CLIENT_WINDOW_DAYS * 86400, "perPage": 1000},
+                ))
+            except Exception as exc:  # noqa: BLE001 - absence is a limitation, not a crash
+                logger.info("Clients unavailable for %s: %s", network_id, exc)
+                self.note_limitation(
+                    f"Client data could not be read for {self.network_name(network_id)}, so "
+                    "address usage there is based on configuration only."
+                )
+                cache["clients"] = []
+        return cache["clients"]
 
     def link_layer(self, network_id: str) -> Optional[Dict[str, Any]]:
         return self._network_resource(

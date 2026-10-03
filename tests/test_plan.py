@@ -81,7 +81,7 @@ def test_exclusive_vlans_plan_deletion(demo_context, tmp_path):
     }}})
     result = compute_plan(demo_context, load_intent(path))
     deleted = sorted(c.address for c in result.changes if c.action == DELETE)
-    assert deleted == [f'network["HQ"].appliance_vlan[{v}]' for v in (10, 20, 30, 40)]
+    assert deleted == [f'network["HQ"].appliance_vlan[{v}]' for v in (10, 20, 30, 40, 50)]
 
 
 def test_inserted_rule_is_one_addition_not_a_cascade(demo_context, tmp_path):

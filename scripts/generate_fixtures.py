@@ -220,9 +220,17 @@ def site_vlans(net: str, octet: int) -> List[Dict[str, Any]]:
             "name": name,
             "applianceIp": f"10.{octet}.{vid}.1",
             "subnet": f"10.{octet}.{vid}.0/24",
+            "dhcpHandling": "Run a DHCP server",
+            "dhcpLeaseTime": "1 day",
+            "reservedIpRanges": [],
+            "fixedIpAssignments": {},
         }
         for vid, name in names.items()
     ]
+
+
+def vlan(vlans: List[Dict[str, Any]], vid: int) -> Dict[str, Any]:
+    return next(v for v in vlans if v["id"] == vid)
 
 
 appliance_vlans = {
@@ -230,6 +238,46 @@ appliance_vlans = {
     NET_EAST: site_vlans(NET_EAST, 20),
     NET_WEST: site_vlans(NET_WEST, 30),
 }
+
+# --- IPAM stories (address space, DHCP, reservations) ------------------------
+
+# HQ guest: someone reserved .2-.200 "for kiosks" in 2019. The kiosks are long
+# gone; the reservation isn't. DHCP has 54 addresses left to hand out, and the
+# guest network is close to running dry at lunchtime.
+vlan(appliance_vlans[NET_HQ], 30)["reservedIpRanges"] = [
+    {"start": "10.10.30.2", "end": "10.10.30.200", "comment": "Reserved for lobby kiosks (2019)"}
+]
+# HQ corp: the lobby printer has a reservation for .50, but a conference-room TV
+# that was given .50 statically is holding it. Two devices, one address.
+MAC_PRINTER_LOBBY = "00:18:0a:aa:00:50"
+MAC_CONF_TV = "00:18:0a:aa:00:51"
+vlan(appliance_vlans[NET_HQ], 10)["fixedIpAssignments"] = {
+    MAC_PRINTER_LOBBY: {"ip": "10.10.10.50", "name": "printer-lobby"},
+}
+# HQ lab: copied from Depot-East's config when the lab was set up, subnet and
+# all. Invisible until the sites are joined by VPN or SD-WAN.
+appliance_vlans[NET_HQ].append({
+    "id": 50, "networkId": NET_HQ, "name": "Lab",
+    "applianceIp": "10.20.10.1", "subnet": "10.20.10.0/24",
+    "dhcpHandling": "Run a DHCP server", "dhcpLeaseTime": "1 day",
+    "reservedIpRanges": [], "fixedIpAssignments": {},
+})
+
+# Depot-East corp: a reservation for a printer that was recycled two years ago.
+MAC_OLD_PRINTER = "00:18:0a:bb:00:40"
+vlan(appliance_vlans[NET_EAST], 10)["fixedIpAssignments"] = {
+    MAC_OLD_PRINTER: {"ip": "10.20.10.40", "name": "old-printer-2nd-floor"},
+}
+# Depot-East management: a reservation typed as 10.20.2.15 in a 10.20.1.0/24
+# VLAN. DHCP can never serve it, so the UPS takes a random lease instead and
+# its monitoring points at an address nothing answers on.
+MAC_UPS = "00:18:0a:bb:00:15"
+vlan(appliance_vlans[NET_EAST], 1)["fixedIpAssignments"] = {
+    MAC_UPS: {"ip": "10.20.2.15", "name": "ups-mgmt"},
+}
+# Depot-East voice: phones get DHCP from the central call server, not the MX.
+vlan(appliance_vlans[NET_EAST], 20)["dhcpHandling"] = "Relay DHCP to another server"
+vlan(appliance_vlans[NET_EAST], 20)["dhcpRelayServerIps"] = ["10.10.1.10"]
 
 
 def mx_ports() -> List[Dict[str, Any]]:
@@ -400,6 +448,42 @@ topology = {
 }
 
 
+# -------------------------------------------------------------------- clients
+# GET /networks/{id}/clients?timespan=604800: everything seen in the last 7 days.
+
+LAST_SEEN = 1790000000  # fixed epoch so fixtures are deterministic
+
+
+def client(mac, ip, vlan_id, description):
+    return {"id": "k" + mac.replace(":", "")[-6:], "mac": mac, "ip": ip, "vlan": vlan_id,
+            "description": description, "lastSeen": LAST_SEEN, "status": "Online"}
+
+
+def _mac(prefix: str, n: int) -> str:
+    return f"00:18:0a:{prefix}:{n // 256:02x}:{n % 256:02x}"
+
+
+clients = {
+    NET_HQ: [
+        *[client(_mac("c1", i), f"10.10.10.{100 + i}", 10, f"laptop-{i:02d}") for i in range(12)],
+        client(MAC_CONF_TV, "10.10.10.50", 10, "conference-room-tv"),
+        # 50 guests in a pool of 54.
+        *[client(_mac("c3", i), f"10.10.30.{201 + i}", 30, f"guest-{i:02d}") for i in range(50)],
+    ],
+    NET_EAST: [
+        *[client(_mac("e1", i), f"10.20.10.{100 + i}", 10, f"dispatch-{i:02d}") for i in range(6)],
+        client(MAC_UPS, "10.20.1.87", 1, "ups-mgmt"),
+        *[client(_mac("e2", i), f"10.20.20.{100 + i}", 20, f"phone-{i:02d}") for i in range(4)],
+    ],
+    NET_WEST: [
+        *[client(_mac("w1", i), f"10.30.10.{100 + i}", 10, f"dispatch-{i:02d}") for i in range(4)],
+        # A consumer router plugged in at the wash bay, handing out its own
+        # 192.168.1.0/24. The PC behind it works; nobody can find it.
+        client("00:18:0a:dd:00:01", "192.168.1.50", 10, "Wash bay PC"),
+    ],
+}
+
+
 def main() -> None:
     write("organizations", organizations)
     write("networks", networks)
@@ -410,6 +494,7 @@ def main() -> None:
     write("l3_firewall_rules", l3_rules)
     write("ssids", ssids)
     write("topology", topology)
+    write("clients", clients)
     print(f"wrote fixtures to {OUT}")
 
 

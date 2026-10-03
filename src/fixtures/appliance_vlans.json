@@ -5,35 +5,77 @@
       "networkId": "L_100000000000000001",
       "name": "Management",
       "applianceIp": "10.10.1.1",
-      "subnet": "10.10.1.0/24"
+      "subnet": "10.10.1.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     },
     {
       "id": 10,
       "networkId": "L_100000000000000001",
       "name": "Corp",
       "applianceIp": "10.10.10.1",
-      "subnet": "10.10.10.0/24"
+      "subnet": "10.10.10.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {
+        "00:18:0a:aa:00:50": {
+          "ip": "10.10.10.50",
+          "name": "printer-lobby"
+        }
+      }
     },
     {
       "id": 20,
       "networkId": "L_100000000000000001",
       "name": "Voice",
       "applianceIp": "10.10.20.1",
-      "subnet": "10.10.20.0/24"
+      "subnet": "10.10.20.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     },
     {
       "id": 30,
       "networkId": "L_100000000000000001",
       "name": "Guest",
       "applianceIp": "10.10.30.1",
-      "subnet": "10.10.30.0/24"
+      "subnet": "10.10.30.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [
+        {
+          "start": "10.10.30.2",
+          "end": "10.10.30.200",
+          "comment": "Reserved for lobby kiosks (2019)"
+        }
+      ],
+      "fixedIpAssignments": {}
     },
     {
       "id": 40,
       "networkId": "L_100000000000000001",
       "name": "Cameras",
       "applianceIp": "10.10.40.1",
-      "subnet": "10.10.40.0/24"
+      "subnet": "10.10.40.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
+    },
+    {
+      "id": 50,
+      "networkId": "L_100000000000000001",
+      "name": "Lab",
+      "applianceIp": "10.20.10.1",
+      "subnet": "10.20.10.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     }
   ],
   "L_100000000000000002": [
@@ -42,35 +84,68 @@
       "networkId": "L_100000000000000002",
       "name": "Management",
       "applianceIp": "10.20.1.1",
-      "subnet": "10.20.1.0/24"
+      "subnet": "10.20.1.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {
+        "00:18:0a:bb:00:15": {
+          "ip": "10.20.2.15",
+          "name": "ups-mgmt"
+        }
+      }
     },
     {
       "id": 10,
       "networkId": "L_100000000000000002",
       "name": "Corp",
       "applianceIp": "10.20.10.1",
-      "subnet": "10.20.10.0/24"
+      "subnet": "10.20.10.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {
+        "00:18:0a:bb:00:40": {
+          "ip": "10.20.10.40",
+          "name": "old-printer-2nd-floor"
+        }
+      }
     },
     {
       "id": 20,
       "networkId": "L_100000000000000002",
       "name": "Voice",
       "applianceIp": "10.20.20.1",
-      "subnet": "10.20.20.0/24"
+      "subnet": "10.20.20.0/24",
+      "dhcpHandling": "Relay DHCP to another server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {},
+      "dhcpRelayServerIps": [
+        "10.10.1.10"
+      ]
     },
     {
       "id": 30,
       "networkId": "L_100000000000000002",
       "name": "Guest",
       "applianceIp": "10.20.30.1",
-      "subnet": "10.20.30.0/24"
+      "subnet": "10.20.30.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     },
     {
       "id": 40,
       "networkId": "L_100000000000000002",
       "name": "Cameras",
       "applianceIp": "10.20.40.1",
-      "subnet": "10.20.40.0/24"
+      "subnet": "10.20.40.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     }
   ],
   "L_100000000000000003": [
@@ -79,35 +154,55 @@
       "networkId": "L_100000000000000003",
       "name": "Management",
       "applianceIp": "10.30.1.1",
-      "subnet": "10.30.1.0/24"
+      "subnet": "10.30.1.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     },
     {
       "id": 10,
       "networkId": "L_100000000000000003",
       "name": "Corp",
       "applianceIp": "10.30.10.1",
-      "subnet": "10.30.10.0/24"
+      "subnet": "10.30.10.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     },
     {
       "id": 20,
       "networkId": "L_100000000000000003",
       "name": "Voice",
       "applianceIp": "10.30.20.1",
-      "subnet": "10.30.20.0/24"
+      "subnet": "10.30.20.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     },
     {
       "id": 30,
       "networkId": "L_100000000000000003",
       "name": "Guest",
       "applianceIp": "10.30.30.1",
-      "subnet": "10.30.30.0/24"
+      "subnet": "10.30.30.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     },
     {
       "id": 40,
       "networkId": "L_100000000000000003",
       "name": "Cameras",
       "applianceIp": "10.30.40.1",
-      "subnet": "10.30.40.0/24"
+      "subnet": "10.30.40.0/24",
+      "dhcpHandling": "Run a DHCP server",
+      "dhcpLeaseTime": "1 day",
+      "reservedIpRanges": [],
+      "fixedIpAssignments": {}
     }
   ]
 }

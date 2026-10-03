@@ -1,0 +1,719 @@
+{
+  "L_100000000000000001": [
+    {
+      "id": "kc10000",
+      "mac": "00:18:0a:c1:00:00",
+      "ip": "10.10.10.100",
+      "vlan": 10,
+      "description": "laptop-00",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10001",
+      "mac": "00:18:0a:c1:00:01",
+      "ip": "10.10.10.101",
+      "vlan": 10,
+      "description": "laptop-01",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10002",
+      "mac": "00:18:0a:c1:00:02",
+      "ip": "10.10.10.102",
+      "vlan": 10,
+      "description": "laptop-02",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10003",
+      "mac": "00:18:0a:c1:00:03",
+      "ip": "10.10.10.103",
+      "vlan": 10,
+      "description": "laptop-03",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10004",
+      "mac": "00:18:0a:c1:00:04",
+      "ip": "10.10.10.104",
+      "vlan": 10,
+      "description": "laptop-04",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10005",
+      "mac": "00:18:0a:c1:00:05",
+      "ip": "10.10.10.105",
+      "vlan": 10,
+      "description": "laptop-05",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10006",
+      "mac": "00:18:0a:c1:00:06",
+      "ip": "10.10.10.106",
+      "vlan": 10,
+      "description": "laptop-06",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10007",
+      "mac": "00:18:0a:c1:00:07",
+      "ip": "10.10.10.107",
+      "vlan": 10,
+      "description": "laptop-07",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10008",
+      "mac": "00:18:0a:c1:00:08",
+      "ip": "10.10.10.108",
+      "vlan": 10,
+      "description": "laptop-08",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc10009",
+      "mac": "00:18:0a:c1:00:09",
+      "ip": "10.10.10.109",
+      "vlan": 10,
+      "description": "laptop-09",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc1000a",
+      "mac": "00:18:0a:c1:00:0a",
+      "ip": "10.10.10.110",
+      "vlan": 10,
+      "description": "laptop-10",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc1000b",
+      "mac": "00:18:0a:c1:00:0b",
+      "ip": "10.10.10.111",
+      "vlan": 10,
+      "description": "laptop-11",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kaa0051",
+      "mac": "00:18:0a:aa:00:51",
+      "ip": "10.10.10.50",
+      "vlan": 10,
+      "description": "conference-room-tv",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30000",
+      "mac": "00:18:0a:c3:00:00",
+      "ip": "10.10.30.201",
+      "vlan": 30,
+      "description": "guest-00",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30001",
+      "mac": "00:18:0a:c3:00:01",
+      "ip": "10.10.30.202",
+      "vlan": 30,
+      "description": "guest-01",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30002",
+      "mac": "00:18:0a:c3:00:02",
+      "ip": "10.10.30.203",
+      "vlan": 30,
+      "description": "guest-02",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30003",
+      "mac": "00:18:0a:c3:00:03",
+      "ip": "10.10.30.204",
+      "vlan": 30,
+      "description": "guest-03",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30004",
+      "mac": "00:18:0a:c3:00:04",
+      "ip": "10.10.30.205",
+      "vlan": 30,
+      "description": "guest-04",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30005",
+      "mac": "00:18:0a:c3:00:05",
+      "ip": "10.10.30.206",
+      "vlan": 30,
+      "description": "guest-05",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30006",
+      "mac": "00:18:0a:c3:00:06",
+      "ip": "10.10.30.207",
+      "vlan": 30,
+      "description": "guest-06",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30007",
+      "mac": "00:18:0a:c3:00:07",
+      "ip": "10.10.30.208",
+      "vlan": 30,
+      "description": "guest-07",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30008",
+      "mac": "00:18:0a:c3:00:08",
+      "ip": "10.10.30.209",
+      "vlan": 30,
+      "description": "guest-08",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30009",
+      "mac": "00:18:0a:c3:00:09",
+      "ip": "10.10.30.210",
+      "vlan": 30,
+      "description": "guest-09",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3000a",
+      "mac": "00:18:0a:c3:00:0a",
+      "ip": "10.10.30.211",
+      "vlan": 30,
+      "description": "guest-10",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3000b",
+      "mac": "00:18:0a:c3:00:0b",
+      "ip": "10.10.30.212",
+      "vlan": 30,
+      "description": "guest-11",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3000c",
+      "mac": "00:18:0a:c3:00:0c",
+      "ip": "10.10.30.213",
+      "vlan": 30,
+      "description": "guest-12",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3000d",
+      "mac": "00:18:0a:c3:00:0d",
+      "ip": "10.10.30.214",
+      "vlan": 30,
+      "description": "guest-13",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3000e",
+      "mac": "00:18:0a:c3:00:0e",
+      "ip": "10.10.30.215",
+      "vlan": 30,
+      "description": "guest-14",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3000f",
+      "mac": "00:18:0a:c3:00:0f",
+      "ip": "10.10.30.216",
+      "vlan": 30,
+      "description": "guest-15",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30010",
+      "mac": "00:18:0a:c3:00:10",
+      "ip": "10.10.30.217",
+      "vlan": 30,
+      "description": "guest-16",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30011",
+      "mac": "00:18:0a:c3:00:11",
+      "ip": "10.10.30.218",
+      "vlan": 30,
+      "description": "guest-17",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30012",
+      "mac": "00:18:0a:c3:00:12",
+      "ip": "10.10.30.219",
+      "vlan": 30,
+      "description": "guest-18",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30013",
+      "mac": "00:18:0a:c3:00:13",
+      "ip": "10.10.30.220",
+      "vlan": 30,
+      "description": "guest-19",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30014",
+      "mac": "00:18:0a:c3:00:14",
+      "ip": "10.10.30.221",
+      "vlan": 30,
+      "description": "guest-20",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30015",
+      "mac": "00:18:0a:c3:00:15",
+      "ip": "10.10.30.222",
+      "vlan": 30,
+      "description": "guest-21",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30016",
+      "mac": "00:18:0a:c3:00:16",
+      "ip": "10.10.30.223",
+      "vlan": 30,
+      "description": "guest-22",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30017",
+      "mac": "00:18:0a:c3:00:17",
+      "ip": "10.10.30.224",
+      "vlan": 30,
+      "description": "guest-23",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30018",
+      "mac": "00:18:0a:c3:00:18",
+      "ip": "10.10.30.225",
+      "vlan": 30,
+      "description": "guest-24",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30019",
+      "mac": "00:18:0a:c3:00:19",
+      "ip": "10.10.30.226",
+      "vlan": 30,
+      "description": "guest-25",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3001a",
+      "mac": "00:18:0a:c3:00:1a",
+      "ip": "10.10.30.227",
+      "vlan": 30,
+      "description": "guest-26",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3001b",
+      "mac": "00:18:0a:c3:00:1b",
+      "ip": "10.10.30.228",
+      "vlan": 30,
+      "description": "guest-27",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3001c",
+      "mac": "00:18:0a:c3:00:1c",
+      "ip": "10.10.30.229",
+      "vlan": 30,
+      "description": "guest-28",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3001d",
+      "mac": "00:18:0a:c3:00:1d",
+      "ip": "10.10.30.230",
+      "vlan": 30,
+      "description": "guest-29",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3001e",
+      "mac": "00:18:0a:c3:00:1e",
+      "ip": "10.10.30.231",
+      "vlan": 30,
+      "description": "guest-30",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3001f",
+      "mac": "00:18:0a:c3:00:1f",
+      "ip": "10.10.30.232",
+      "vlan": 30,
+      "description": "guest-31",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30020",
+      "mac": "00:18:0a:c3:00:20",
+      "ip": "10.10.30.233",
+      "vlan": 30,
+      "description": "guest-32",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30021",
+      "mac": "00:18:0a:c3:00:21",
+      "ip": "10.10.30.234",
+      "vlan": 30,
+      "description": "guest-33",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30022",
+      "mac": "00:18:0a:c3:00:22",
+      "ip": "10.10.30.235",
+      "vlan": 30,
+      "description": "guest-34",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30023",
+      "mac": "00:18:0a:c3:00:23",
+      "ip": "10.10.30.236",
+      "vlan": 30,
+      "description": "guest-35",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30024",
+      "mac": "00:18:0a:c3:00:24",
+      "ip": "10.10.30.237",
+      "vlan": 30,
+      "description": "guest-36",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30025",
+      "mac": "00:18:0a:c3:00:25",
+      "ip": "10.10.30.238",
+      "vlan": 30,
+      "description": "guest-37",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30026",
+      "mac": "00:18:0a:c3:00:26",
+      "ip": "10.10.30.239",
+      "vlan": 30,
+      "description": "guest-38",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30027",
+      "mac": "00:18:0a:c3:00:27",
+      "ip": "10.10.30.240",
+      "vlan": 30,
+      "description": "guest-39",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30028",
+      "mac": "00:18:0a:c3:00:28",
+      "ip": "10.10.30.241",
+      "vlan": 30,
+      "description": "guest-40",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30029",
+      "mac": "00:18:0a:c3:00:29",
+      "ip": "10.10.30.242",
+      "vlan": 30,
+      "description": "guest-41",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3002a",
+      "mac": "00:18:0a:c3:00:2a",
+      "ip": "10.10.30.243",
+      "vlan": 30,
+      "description": "guest-42",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3002b",
+      "mac": "00:18:0a:c3:00:2b",
+      "ip": "10.10.30.244",
+      "vlan": 30,
+      "description": "guest-43",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3002c",
+      "mac": "00:18:0a:c3:00:2c",
+      "ip": "10.10.30.245",
+      "vlan": 30,
+      "description": "guest-44",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3002d",
+      "mac": "00:18:0a:c3:00:2d",
+      "ip": "10.10.30.246",
+      "vlan": 30,
+      "description": "guest-45",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3002e",
+      "mac": "00:18:0a:c3:00:2e",
+      "ip": "10.10.30.247",
+      "vlan": 30,
+      "description": "guest-46",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc3002f",
+      "mac": "00:18:0a:c3:00:2f",
+      "ip": "10.10.30.248",
+      "vlan": 30,
+      "description": "guest-47",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30030",
+      "mac": "00:18:0a:c3:00:30",
+      "ip": "10.10.30.249",
+      "vlan": 30,
+      "description": "guest-48",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kc30031",
+      "mac": "00:18:0a:c3:00:31",
+      "ip": "10.10.30.250",
+      "vlan": 30,
+      "description": "guest-49",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    }
+  ],
+  "L_100000000000000002": [
+    {
+      "id": "ke10000",
+      "mac": "00:18:0a:e1:00:00",
+      "ip": "10.20.10.100",
+      "vlan": 10,
+      "description": "dispatch-00",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke10001",
+      "mac": "00:18:0a:e1:00:01",
+      "ip": "10.20.10.101",
+      "vlan": 10,
+      "description": "dispatch-01",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke10002",
+      "mac": "00:18:0a:e1:00:02",
+      "ip": "10.20.10.102",
+      "vlan": 10,
+      "description": "dispatch-02",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke10003",
+      "mac": "00:18:0a:e1:00:03",
+      "ip": "10.20.10.103",
+      "vlan": 10,
+      "description": "dispatch-03",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke10004",
+      "mac": "00:18:0a:e1:00:04",
+      "ip": "10.20.10.104",
+      "vlan": 10,
+      "description": "dispatch-04",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke10005",
+      "mac": "00:18:0a:e1:00:05",
+      "ip": "10.20.10.105",
+      "vlan": 10,
+      "description": "dispatch-05",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kbb0015",
+      "mac": "00:18:0a:bb:00:15",
+      "ip": "10.20.1.87",
+      "vlan": 1,
+      "description": "ups-mgmt",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke20000",
+      "mac": "00:18:0a:e2:00:00",
+      "ip": "10.20.20.100",
+      "vlan": 20,
+      "description": "phone-00",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke20001",
+      "mac": "00:18:0a:e2:00:01",
+      "ip": "10.20.20.101",
+      "vlan": 20,
+      "description": "phone-01",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke20002",
+      "mac": "00:18:0a:e2:00:02",
+      "ip": "10.20.20.102",
+      "vlan": 20,
+      "description": "phone-02",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "ke20003",
+      "mac": "00:18:0a:e2:00:03",
+      "ip": "10.20.20.103",
+      "vlan": 20,
+      "description": "phone-03",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    }
+  ],
+  "L_100000000000000003": [
+    {
+      "id": "kw10000",
+      "mac": "00:18:0a:w1:00:00",
+      "ip": "10.30.10.100",
+      "vlan": 10,
+      "description": "dispatch-00",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kw10001",
+      "mac": "00:18:0a:w1:00:01",
+      "ip": "10.30.10.101",
+      "vlan": 10,
+      "description": "dispatch-01",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kw10002",
+      "mac": "00:18:0a:w1:00:02",
+      "ip": "10.30.10.102",
+      "vlan": 10,
+      "description": "dispatch-02",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kw10003",
+      "mac": "00:18:0a:w1:00:03",
+      "ip": "10.30.10.103",
+      "vlan": 10,
+      "description": "dispatch-03",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    },
+    {
+      "id": "kdd0001",
+      "mac": "00:18:0a:dd:00:01",
+      "ip": "192.168.1.50",
+      "vlan": 10,
+      "description": "Wash bay PC",
+      "lastSeen": 1790000000,
+      "status": "Online"
+    }
+  ]
+}
