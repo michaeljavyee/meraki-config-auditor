@@ -231,7 +231,46 @@ HTML escaping of Dashboard-supplied strings, the IPAM pool arithmetic and each r
 export-then-plan-is-empty round trip, exit codes, set semantics for VLAN
 lists, ordered firewall diffs, exclusive deletion, and intent validation.
 
-## Related
+## How this fits with my other work
 
-[okta-nhi-audit-tool](https://github.com/michaeljavyee/okta-nhi-audit-tool): the
-same architecture applied to non-human identities in Okta.
+Three repos, one idea: **the system reported success and left something behind.**
+
+This one starts from an outage. The switch was green in Dashboard, the cameras
+had power and link, every status page said healthy — and VLAN 40 was missing
+from one rebuilt uplink, so five cameras were dark and nothing alerted. The
+tooling reported success. The network had quietly stopped matching what anyone
+believed about it.
+
+The two identity repos chase that same failure in Okta:
+
+```mermaid
+flowchart LR
+    subgraph Network
+        D["meraki-config-auditor<br/>declared baseline vs live config"]
+    end
+    subgraph Identity
+        A["it-onboarding-automation<br/>verify at the moment of change"]
+        B["okta-nhi-audit-tool<br/>find what was already missed"]
+        C["Workflows remediation<br/><i>not built yet</i>"]
+        A --> B
+        B -.-> C
+        C -.-> A
+    end
+    style C stroke-dasharray: 5 5
+```
+
+| Repo | Catches | The lie it doesn't believe |
+|---|---|---|
+| **meraki-config-auditor** (this repo) | Config drift between declared intent and live network state | "Dashboard shows the switch green" |
+| [it-onboarding-automation](https://github.com/michaeljavyee/it-onboarding-automation) | Leaver actions that returned success but didn't take effect | "HTTP 200 means it happened" |
+| [okta-nhi-audit-tool](https://github.com/michaeljavyee/okta-nhi-audit-tool) | Machine identities no access review has ever covered | "We review access quarterly" |
+
+The shared mechanics are deliberate, not copy-paste: read-only clients behind a
+demo/live interface so `--demo` exercises the real code path, severity set by
+consequence rather than by distance from the baseline, and findings carrying
+evidence, business risk and remediation rather than a diff.
+
+The difference worth noting in an interview is where the baseline comes from.
+Here it's declared — someone writes the intent in YAML. In the identity repos
+there is no baseline to declare, because nobody ever wrote down which service
+accounts are supposed to exist, which is exactly why they accumulate.
