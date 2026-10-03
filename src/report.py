@@ -45,11 +45,16 @@ SCOPE_COVERED = [
     "DHCP pools against reserved ranges, fixed reservations and clients seen in the last 7 days",
     "Fixed reservations that can't be served, are held by another device, or are for devices no longer seen",
     "Clients using addresses outside every subnet in their network",
+    "802.1X access policy design: host mode, guest / failed-auth and fail-open VLANs, RADIUS redundancy and accounting",
+    "Access ports that enforce no access policy and aren't tagged exempt",
+    "How wired clients on enforcing ports were admitted: 802.1X, MAB, or the failed-auth VLAN",
 ]
 
 SCOPE_EXCLUDED = [
     "Switch access-port configuration drift (port security, 802.1X, STP guard) - planned",
     "DNS, IPv6, and address space managed outside Meraki (external DHCP servers, data centre)",
+    "RADIUS server configuration, certificates, and policies applied by RADIUS (dynamic VLANs, ACLs)",
+    "Wireless 802.1X (covered by the SSID check's authentication mode only)",
     "Orphaned or unused configuration objects (policy objects, group policies) - planned",
     "Inbound firewall rules, port forwarding, 1:1 NAT, L7 and content filtering",
     "Site-to-site VPN, SD-WAN and routing configuration",
@@ -70,6 +75,7 @@ def render_html(
     demo: bool = False,
     scope_limitations: Optional[List[str]] = None,
     address_space: Optional[List[Dict[str, Any]]] = None,
+    nac_posture: Optional[List[Dict[str, Any]]] = None,
 ) -> Path:
     """Render the self-contained HTML report.
 
@@ -105,6 +111,7 @@ def render_html(
         scope_excluded=SCOPE_EXCLUDED,
         scope_limitations=scope_limitations or [],
         address_space=address_space or [],
+        nac_posture=nac_posture or [],
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(rendered, encoding="utf-8")

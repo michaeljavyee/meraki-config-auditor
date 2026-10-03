@@ -229,6 +229,35 @@ leases, so utilisation here errs high.</p>
 </div>
 {% endif %}
 
+{% if nac_posture %}
+<h3>802.1X posture <span class="mono">({{ nac_posture|length }} switches)</span></h3>
+<p>Enabled access ports by enforcement, and how wired clients seen in the last
+7 days were admitted. A client on an enforcing port with an 802.1X identity
+authenticated; one without came in through MAB; one in the policy's guest or
+failed-auth VLAN failed.</p>
+<div class="scroll">
+<table>
+  <thead><tr><th>Network</th><th>Switch</th><th class="num">Access ports</th><th class="num">Enforcing</th><th class="num">Exempt</th><th class="num">Open</th><th class="num">802.1X</th><th class="num">MAB</th><th class="num">Failed</th><th class="num">On open ports</th></tr></thead>
+  <tbody>
+  {% for r in nac_posture %}
+    <tr>
+      <td>{{ r.network }}</td>
+      <td><strong>{{ r.switch }}</strong></td>
+      <td class="num">{{ r.access_ports }}</td>
+      <td class="num">{{ r.enforcing or '—' }}</td>
+      <td class="num">{{ r.exempt or '—' }}</td>
+      <td class="num {{ 'cell high' if r.open else '' }}">{{ r.open or '—' }}</td>
+      <td class="num">{{ r.dot1x or '—' }}</td>
+      <td class="num">{{ r.mab or '—' }}</td>
+      <td class="num {{ 'cell medium' if r.failed else '' }}">{{ r.failed or '—' }}</td>
+      <td class="num">{{ r.on_open or '—' }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
 <!-- 3 ------------------------------------------------------------------ -->
 <h2>3 &nbsp;&middot;&nbsp; Findings</h2>
 
