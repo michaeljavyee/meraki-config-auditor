@@ -7,7 +7,12 @@
       "vlan": 10,
       "description": "laptop-00",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW01",
+      "switchport": "1",
+      "user": "user00@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "Dell"
     },
     {
       "id": "kc10001",
@@ -16,7 +21,12 @@
       "vlan": 10,
       "description": "laptop-01",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW01",
+      "switchport": "2",
+      "user": "user01@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "Dell"
     },
     {
       "id": "kc10002",
@@ -25,7 +35,12 @@
       "vlan": 10,
       "description": "laptop-02",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW01",
+      "switchport": "3",
+      "user": "user02@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "Dell"
     },
     {
       "id": "kc10003",
@@ -34,7 +49,12 @@
       "vlan": 10,
       "description": "laptop-03",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW01",
+      "switchport": "4",
+      "user": "user03@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "Dell"
     },
     {
       "id": "kc10004",
@@ -43,7 +63,12 @@
       "vlan": 10,
       "description": "laptop-04",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW02",
+      "switchport": "1",
+      "user": "user04@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "Dell"
     },
     {
       "id": "kc10005",
@@ -52,7 +77,12 @@
       "vlan": 10,
       "description": "laptop-05",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW02",
+      "switchport": "2",
+      "user": "user05@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "Dell"
     },
     {
       "id": "kc10006",
@@ -61,7 +91,12 @@
       "vlan": 10,
       "description": "laptop-06",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW02",
+      "switchport": "3",
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "Dell"
     },
     {
       "id": "kc10007",
@@ -70,7 +105,12 @@
       "vlan": 10,
       "description": "laptop-07",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "macOS",
+      "manufacturer": "Apple"
     },
     {
       "id": "kc10008",
@@ -79,7 +119,12 @@
       "vlan": 10,
       "description": "laptop-08",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "macOS",
+      "manufacturer": "Apple"
     },
     {
       "id": "kc10009",
@@ -88,7 +133,12 @@
       "vlan": 10,
       "description": "laptop-09",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "macOS",
+      "manufacturer": "Apple"
     },
     {
       "id": "kc1000a",
@@ -97,7 +147,12 @@
       "vlan": 10,
       "description": "laptop-10",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "macOS",
+      "manufacturer": "Apple"
     },
     {
       "id": "kc1000b",
@@ -106,7 +161,12 @@
       "vlan": 10,
       "description": "laptop-11",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "macOS",
+      "manufacturer": "Apple"
     },
     {
       "id": "kaa0051",
@@ -115,16 +175,54 @@
       "vlan": 10,
       "description": "conference-room-tv",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
+    },
+    {
+      "id": "kc20000",
+      "mac": "00:18:0a:c2:00:00",
+      "ip": "10.10.20.100",
+      "vlan": 20,
+      "description": "desk-phone-00",
+      "lastSeen": 1790000000,
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW01",
+      "switchport": "1",
+      "user": null,
+      "os": null,
+      "manufacturer": "Cisco"
+    },
+    {
+      "id": "kc20001",
+      "mac": "00:18:0a:c2:00:01",
+      "ip": "10.10.20.101",
+      "vlan": 20,
+      "description": "desk-phone-01",
+      "lastSeen": 1790000000,
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW01",
+      "switchport": "2",
+      "user": null,
+      "os": null,
+      "manufacturer": "Cisco"
     },
     {
       "id": "kc30000",
       "mac": "00:18:0a:c3:00:00",
       "ip": "10.10.30.201",
       "vlan": 30,
-      "description": "guest-00",
+      "description": "contractor-laptop",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-HQ00-SW02",
+      "switchport": "4",
+      "user": null,
+      "os": "Windows 10",
+      "manufacturer": "Lenovo"
     },
     {
       "id": "kc30001",
@@ -133,7 +231,12 @@
       "vlan": 30,
       "description": "guest-01",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30002",
@@ -142,7 +245,12 @@
       "vlan": 30,
       "description": "guest-02",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30003",
@@ -151,7 +259,12 @@
       "vlan": 30,
       "description": "guest-03",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30004",
@@ -160,7 +273,12 @@
       "vlan": 30,
       "description": "guest-04",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30005",
@@ -169,7 +287,12 @@
       "vlan": 30,
       "description": "guest-05",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30006",
@@ -178,7 +301,12 @@
       "vlan": 30,
       "description": "guest-06",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30007",
@@ -187,7 +315,12 @@
       "vlan": 30,
       "description": "guest-07",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30008",
@@ -196,7 +329,12 @@
       "vlan": 30,
       "description": "guest-08",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30009",
@@ -205,7 +343,12 @@
       "vlan": 30,
       "description": "guest-09",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3000a",
@@ -214,7 +357,12 @@
       "vlan": 30,
       "description": "guest-10",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3000b",
@@ -223,7 +371,12 @@
       "vlan": 30,
       "description": "guest-11",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3000c",
@@ -232,7 +385,12 @@
       "vlan": 30,
       "description": "guest-12",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3000d",
@@ -241,7 +399,12 @@
       "vlan": 30,
       "description": "guest-13",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3000e",
@@ -250,7 +413,12 @@
       "vlan": 30,
       "description": "guest-14",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3000f",
@@ -259,7 +427,12 @@
       "vlan": 30,
       "description": "guest-15",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30010",
@@ -268,7 +441,12 @@
       "vlan": 30,
       "description": "guest-16",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30011",
@@ -277,7 +455,12 @@
       "vlan": 30,
       "description": "guest-17",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30012",
@@ -286,7 +469,12 @@
       "vlan": 30,
       "description": "guest-18",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30013",
@@ -295,7 +483,12 @@
       "vlan": 30,
       "description": "guest-19",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30014",
@@ -304,7 +497,12 @@
       "vlan": 30,
       "description": "guest-20",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30015",
@@ -313,7 +511,12 @@
       "vlan": 30,
       "description": "guest-21",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30016",
@@ -322,7 +525,12 @@
       "vlan": 30,
       "description": "guest-22",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30017",
@@ -331,7 +539,12 @@
       "vlan": 30,
       "description": "guest-23",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30018",
@@ -340,7 +553,12 @@
       "vlan": 30,
       "description": "guest-24",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30019",
@@ -349,7 +567,12 @@
       "vlan": 30,
       "description": "guest-25",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3001a",
@@ -358,7 +581,12 @@
       "vlan": 30,
       "description": "guest-26",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3001b",
@@ -367,7 +595,12 @@
       "vlan": 30,
       "description": "guest-27",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3001c",
@@ -376,7 +609,12 @@
       "vlan": 30,
       "description": "guest-28",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3001d",
@@ -385,7 +623,12 @@
       "vlan": 30,
       "description": "guest-29",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3001e",
@@ -394,7 +637,12 @@
       "vlan": 30,
       "description": "guest-30",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3001f",
@@ -403,7 +651,12 @@
       "vlan": 30,
       "description": "guest-31",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30020",
@@ -412,7 +665,12 @@
       "vlan": 30,
       "description": "guest-32",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30021",
@@ -421,7 +679,12 @@
       "vlan": 30,
       "description": "guest-33",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30022",
@@ -430,7 +693,12 @@
       "vlan": 30,
       "description": "guest-34",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30023",
@@ -439,7 +707,12 @@
       "vlan": 30,
       "description": "guest-35",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30024",
@@ -448,7 +721,12 @@
       "vlan": 30,
       "description": "guest-36",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30025",
@@ -457,7 +735,12 @@
       "vlan": 30,
       "description": "guest-37",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30026",
@@ -466,7 +749,12 @@
       "vlan": 30,
       "description": "guest-38",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30027",
@@ -475,7 +763,12 @@
       "vlan": 30,
       "description": "guest-39",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30028",
@@ -484,7 +777,12 @@
       "vlan": 30,
       "description": "guest-40",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30029",
@@ -493,7 +791,12 @@
       "vlan": 30,
       "description": "guest-41",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3002a",
@@ -502,7 +805,12 @@
       "vlan": 30,
       "description": "guest-42",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3002b",
@@ -511,7 +819,12 @@
       "vlan": 30,
       "description": "guest-43",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3002c",
@@ -520,7 +833,12 @@
       "vlan": 30,
       "description": "guest-44",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3002d",
@@ -529,7 +847,12 @@
       "vlan": 30,
       "description": "guest-45",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3002e",
@@ -538,7 +861,12 @@
       "vlan": 30,
       "description": "guest-46",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc3002f",
@@ -547,7 +875,12 @@
       "vlan": 30,
       "description": "guest-47",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30030",
@@ -556,7 +889,12 @@
       "vlan": 30,
       "description": "guest-48",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "kc30031",
@@ -565,7 +903,12 @@
       "vlan": 30,
       "description": "guest-49",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     }
   ],
   "L_100000000000000002": [
@@ -576,7 +919,12 @@
       "vlan": 10,
       "description": "dispatch-00",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-EA00-SW01",
+      "switchport": "1",
+      "user": "dispatch00@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "ke10001",
@@ -585,7 +933,12 @@
       "vlan": 10,
       "description": "dispatch-01",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-EA00-SW01",
+      "switchport": "2",
+      "user": "dispatch01@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "ke10002",
@@ -594,7 +947,12 @@
       "vlan": 10,
       "description": "dispatch-02",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-EA00-SW01",
+      "switchport": "3",
+      "user": "dispatch02@cvl.example",
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "ke10003",
@@ -603,7 +961,12 @@
       "vlan": 10,
       "description": "dispatch-03",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "ke10004",
@@ -612,7 +975,12 @@
       "vlan": 10,
       "description": "dispatch-04",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "ke10005",
@@ -621,7 +989,12 @@
       "vlan": 10,
       "description": "dispatch-05",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "kbb0015",
@@ -630,7 +1003,12 @@
       "vlan": 1,
       "description": "ups-mgmt",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "ke20000",
@@ -639,7 +1017,12 @@
       "vlan": 20,
       "description": "phone-00",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "ke20001",
@@ -648,7 +1031,12 @@
       "vlan": 20,
       "description": "phone-01",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "ke20002",
@@ -657,7 +1045,12 @@
       "vlan": 20,
       "description": "phone-02",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     },
     {
       "id": "ke20003",
@@ -666,7 +1059,12 @@
       "vlan": 20,
       "description": "phone-03",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": null,
+      "manufacturer": null
     }
   ],
   "L_100000000000000003": [
@@ -677,7 +1075,12 @@
       "vlan": 10,
       "description": "dispatch-00",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-WE00-SW01",
+      "switchport": "1",
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "kw10001",
@@ -686,7 +1089,12 @@
       "vlan": 10,
       "description": "dispatch-01",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-WE00-SW01",
+      "switchport": "2",
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "kw10002",
@@ -695,7 +1103,12 @@
       "vlan": 10,
       "description": "dispatch-02",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "kw10003",
@@ -704,7 +1117,12 @@
       "vlan": 10,
       "description": "dispatch-03",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": null,
+      "switchport": null,
+      "user": null,
+      "os": "Windows 11",
+      "manufacturer": "HP"
     },
     {
       "id": "kdd0001",
@@ -713,7 +1131,12 @@
       "vlan": 10,
       "description": "Wash bay PC",
       "lastSeen": 1790000000,
-      "status": "Online"
+      "status": "Online",
+      "recentDeviceSerial": "Q2XX-WE00-SW03",
+      "switchport": "6",
+      "user": null,
+      "os": "Windows 10",
+      "manufacturer": null
     }
   ]
 }

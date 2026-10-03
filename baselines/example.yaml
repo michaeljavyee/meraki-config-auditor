@@ -40,6 +40,18 @@ trunks:
   uplink_port_tags: [uplink]
   uplink_name_patterns: [uplink]
 
+# 802.1X / NAC. Every enabled access port must enforce an access policy unless
+# it carries one of the exempt tags (cameras and kiosks are typically MAB-only
+# or isolated by VLAN instead).
+nac:
+  required_on_access_ports: true
+  exempt_port_tags: [uplink, camera, nac-exempt]
+  # VLANs (by role, from `vlans` above) where an unauthenticated or failed
+  # client may land. Anything else as a guest/failed-auth VLAN is a bypass.
+  guest_vlan_roles: [guest]
+  # Fewer than this many RADIUS servers in a policy is a single point of failure.
+  min_radius_servers: 2
+
 firewall:
   # MX L3 outbound rules, in order, excluding the implicit default rule.
   # VLAN(n).* is Meraki's own object syntax for "the subnet of VLAN n on this

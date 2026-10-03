@@ -36,6 +36,9 @@ class OrgContext:
         # Per-VLAN address-space summary, filled in by the IPAM check and
         # rendered as its own table in the report.
         self.address_space: List[Dict[str, Any]] = []
+        # Per-switch 802.1X coverage and authentication outcomes, filled in by
+        # the NAC check.
+        self.nac_posture: List[Dict[str, Any]] = []
 
         self._networks: Optional[List[Dict[str, Any]]] = None
         self._devices: Optional[List[Dict[str, Any]]] = None
@@ -159,6 +162,12 @@ class OrgContext:
                 )
                 cache["clients"] = []
         return cache["clients"]
+
+    def access_policies(self, network_id: str) -> List[Dict[str, Any]]:
+        """Switch 802.1X / MAB access policies defined for the network."""
+        return self._network_resource(
+            network_id, "access_policies", f"/networks/{network_id}/switch/accessPolicies", []
+        ) or []
 
     def link_layer(self, network_id: str) -> Optional[Dict[str, Any]]:
         return self._network_resource(

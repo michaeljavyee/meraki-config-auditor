@@ -35,6 +35,14 @@ class TrunkStandard:
 
 
 @dataclass
+class NacStandard:
+    required: bool = False
+    exempt_port_tags: List[str] = field(default_factory=lambda: ["uplink", "nac-exempt"])
+    guest_vlan_roles: List[str] = field(default_factory=lambda: ["guest"])
+    min_radius_servers: int = 2
+
+
+@dataclass
 class Baseline:
     name: str
     version: str
@@ -45,6 +53,7 @@ class Baseline:
     firewall_rules: List[Dict[str, Any]] = field(default_factory=list)
     ssids: List[Dict[str, Any]] = field(default_factory=list)
     network_tags: List[str] = field(default_factory=list)
+    nac: NacStandard = field(default_factory=NacStandard)
 
     def vlan_label(self, vlan_id: int) -> str:
         name = self.vlan_names.get(vlan_id)
@@ -103,6 +112,14 @@ def load_baseline(path: Path) -> Baseline:
 
     firmware = {str(k): str(v) for k, v in (raw.get("firmware") or {}).items()}
 
+    nac_raw = raw.get("nac") or {}
+    nac = NacStandard(
+        required=bool(nac_raw.get("required_on_access_ports", False)),
+        exempt_port_tags=[str(t).lower() for t in nac_raw.get("exempt_port_tags") or ["uplink", "nac-exempt"]],
+        guest_vlan_roles=[str(r).lower() for r in nac_raw.get("guest_vlan_roles") or ["guest"]],
+        min_radius_servers=int(nac_raw.get("min_radius_servers", 2)),
+    )
+
     return Baseline(
         name=str(raw.get("name") or path.stem),
         version=str(raw.get("version") or "unversioned"),
@@ -113,6 +130,7 @@ def load_baseline(path: Path) -> Baseline:
         firewall_rules=list(rules),
         ssids=list(ssids),
         network_tags=[str(t) for t in (raw.get("scope") or {}).get("network_tags") or []],
+        nac=nac,
     )
 
 

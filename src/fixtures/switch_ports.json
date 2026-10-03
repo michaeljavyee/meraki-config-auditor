@@ -12,7 +12,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "2",
@@ -26,7 +27,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "3",
@@ -40,7 +42,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "4",
@@ -54,7 +57,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "5",
@@ -118,7 +122,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "2",
@@ -132,7 +137,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "3",
@@ -146,7 +152,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "4",
@@ -160,12 +167,15 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "5",
       "name": "Guest kiosk",
-      "tags": [],
+      "tags": [
+        "nac-exempt"
+      ],
       "enabled": true,
       "poeEnabled": true,
       "type": "access",
@@ -206,7 +216,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "2",
@@ -220,7 +231,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "3",
@@ -234,7 +246,8 @@
       "allowedVlans": "all",
       "rstpEnabled": true,
       "stpGuard": "bpdu guard",
-      "accessPolicyType": "Open"
+      "accessPolicyType": "Custom access policy",
+      "accessPolicyNumber": 1
     },
     {
       "portId": "23",

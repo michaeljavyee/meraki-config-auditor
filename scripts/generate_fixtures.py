@@ -141,7 +141,12 @@ def port(
     voice: Optional[int] = None,
     tags: Optional[List[str]] = None,
     enabled: bool = True,
+    policy: Optional[int] = None,
 ) -> Dict[str, Any]:
+    access = (
+        {"accessPolicyType": "Custom access policy", "accessPolicyNumber": policy}
+        if policy is not None else {"accessPolicyType": "Open"}
+    )
     return {
         "portId": str(port_id),
         "name": name,
@@ -154,14 +159,14 @@ def port(
         "allowedVlans": allowed if type == "trunk" else "all",
         "rstpEnabled": True,
         "stpGuard": "disabled" if type == "trunk" else "bpdu guard",
-        "accessPolicyType": "Open",
+        **access,
     }
 
 
 switch_ports = {
     # HQ ---------------------------------------------------------------------
     "Q2XX-HQ00-SW01": [
-        *[port(i, f"Desk {i}", vlan=10, voice=20) for i in range(1, 5)],
+        *[port(i, f"Desk {i}", vlan=10, voice=20, policy=1) for i in range(1, 5)],
         port(5, "Lobby camera", vlan=40, tags=["camera"]),
         port(47, "Downlink SW-HQ-IDF1", type="trunk", vlan=1, allowed="all", tags=["downlink"]),
         port(48, "Uplink MX-HQ", type="trunk", vlan=1, allowed="1,10,20,30,40", tags=["uplink"]),
@@ -170,13 +175,13 @@ switch_ports = {
     # yet. Nothing is broken today; the day someone plugs a camera into this
     # IDF it won't come up.
     "Q2XX-HQ00-SW02": [
-        *[port(i, f"Desk {i}", vlan=10, voice=20) for i in range(1, 5)],
-        port(5, "Guest kiosk", vlan=30),
+        *[port(i, f"Desk {i}", vlan=10, voice=20, policy=1) for i in range(1, 5)],
+        port(5, "Guest kiosk", vlan=30, tags=["nac-exempt"]),
         port(24, "Uplink SW-HQ-CORE", type="trunk", vlan=1, allowed="1,10,20,30", tags=["uplink"]),
     ],
     # Depot-East -------------------------------------------------------------
     "Q2XX-EA00-SW01": [
-        *[port(i, f"Dispatch {i}", vlan=10, voice=20) for i in range(1, 4)],
+        *[port(i, f"Dispatch {i}", vlan=10, voice=20, policy=1) for i in range(1, 4)],
         port(23, "Downlink SW-EAST-IDF1", type="trunk", vlan=1, allowed="all", tags=["downlink"]),
         port(24, "Uplink MX-EAST", type="trunk", vlan=1, allowed="1,10,20,30,40", tags=["uplink"]),
     ],
@@ -448,15 +453,105 @@ topology = {
 }
 
 
+# ------------------------------------------------------- 802.1X access policies
+# GET /networks/{id}/switch/accessPolicies
+
+def radius(host):
+    return {"host": host, "port": 1812}
+
+
+access_policies = {
+    # HQ: the reference 802.1X design. Hybrid (802.1X, MAB fallback for phones
+    # and printers), Multi-Domain so a phone and a PC can share a desk port,
+    # two RADIUS servers, accounting on, failed auth lands in Guest.
+    # One deliberate trade-off: if both RADIUS servers are unreachable, ports
+    # fail OPEN into Corp ("critical auth"), so a RADIUS outage doesn't take
+    # down every desk. That's a defensible choice and it should be a written
+    # one; the audit reports it so it is.
+    NET_HQ: [{
+        "accessPolicyNumber": "1",
+        "name": "Corp 802.1X",
+        "accessPolicyType": "Hybrid authentication",
+        "hostMode": "Multi-Domain",
+        "radiusServers": [radius("10.10.1.10"), radius("10.10.1.11")],
+        "radiusAccountingEnabled": True,
+        "radiusCoaSupportEnabled": True,
+        "guestVlanId": 30,
+        "radius": {"criticalAuth": {"dataVlanId": 10, "voiceVlanId": 20, "suspendPortBounce": False},
+                   "failedAuthVlanId": 30, "reAuthenticationInterval": 3600},
+        "dot1x": {"controlDirection": "both"},
+        "voiceVlanClients": True,
+    }],
+    # Depot-East: 802.1X was set up as Multi-Host to get a dispatch desk with a
+    # small unmanaged switch under it working. Multi-Host authenticates the
+    # first device and then opens the port to everything behind it.
+    NET_EAST: [{
+        "accessPolicyNumber": "1",
+        "name": "Dispatch 802.1X",
+        "accessPolicyType": "802.1x",
+        "hostMode": "Multi-Host",
+        "radiusServers": [radius("10.10.1.10")],
+        "radiusAccountingEnabled": False,
+        "radiusCoaSupportEnabled": False,
+        "guestVlanId": None,
+        "radius": {"criticalAuth": {"dataVlanId": None, "voiceVlanId": None, "suspendPortBounce": False},
+                   "failedAuthVlanId": None, "reAuthenticationInterval": None},
+        "dot1x": {"controlDirection": "both"},
+        "voiceVlanClients": True,
+    }],
+    # Depot-West: 802.1X was never rolled out. Every port is open.
+    NET_WEST: [],
+}
+
+
 # -------------------------------------------------------------------- clients
 # GET /networks/{id}/clients?timespan=604800: everything seen in the last 7 days.
 
 LAST_SEEN = 1790000000  # fixed epoch so fixtures are deterministic
 
 
-def client(mac, ip, vlan_id, description):
+def client(mac, ip, vlan_id, description, *, switch=None, port=None, user=None,
+           os=None, manufacturer=None):
+    """A client. switch/port set means wired, seen on that switch port.
+
+    `user` is the 802.1X identity Dashboard records for a client that
+    authenticated with a supplicant; it's empty for MAB and open ports.
+    """
     return {"id": "k" + mac.replace(":", "")[-6:], "mac": mac, "ip": ip, "vlan": vlan_id,
-            "description": description, "lastSeen": LAST_SEEN, "status": "Online"}
+            "description": description, "lastSeen": LAST_SEEN, "status": "Online",
+            "recentDeviceSerial": switch, "switchport": str(port) if port else None,
+            "user": user, "os": os, "manufacturer": manufacturer}
+
+
+HQ_CORE, HQ_IDF = "Q2XX-HQ00-SW01", "Q2XX-HQ00-SW02"
+EAST_CORE, EAST_IDF = "Q2XX-EA00-SW01", "Q2XX-EA00-SW02"
+WEST_CORE, WEST_IDF = "Q2XX-WE00-SW01", "Q2XX-WE00-SW03"
+
+
+def hq_laptop(i):
+    """Laptops 0-6 are wired to desk ports; 7-11 are on Wi-Fi."""
+    if i >= 7:
+        return client(_mac("c1", i), f"10.10.10.{100 + i}", 10, f"laptop-{i:02d}",
+                      os="macOS", manufacturer="Apple")
+    switch, port_no = (HQ_CORE, i + 1) if i < 4 else (HQ_IDF, i - 3)
+    if i == 6:
+        # A Windows laptop authenticating by MAC address, not 802.1X: its
+        # supplicant is off or broken, and its MAC was added to RADIUS so the
+        # ticket could be closed. Anyone who copies that MAC gets Corp.
+        return client(_mac("c1", i), f"10.10.10.{100 + i}", 10, f"laptop-{i:02d}",
+                      switch=switch, port=port_no, os="Windows 11", manufacturer="Dell")
+    return client(_mac("c1", i), f"10.10.10.{100 + i}", 10, f"laptop-{i:02d}",
+                  switch=switch, port=port_no, user=f"user{i:02d}@cvl.example",
+                  os="Windows 11", manufacturer="Dell")
+
+
+def hq_guest(i):
+    if i == 0:
+        # Plugged into a desk port, failed 802.1X, landed in Guest. Works, sort
+        # of; it's a ticket that hasn't been raised yet.
+        return client(_mac("c3", i), f"10.10.30.{201 + i}", 30, "contractor-laptop",
+                      switch=HQ_IDF, port=4, os="Windows 10", manufacturer="Lenovo")
+    return client(_mac("c3", i), f"10.10.30.{201 + i}", 30, f"guest-{i:02d}")
 
 
 def _mac(prefix: str, n: int) -> str:
@@ -465,21 +560,31 @@ def _mac(prefix: str, n: int) -> str:
 
 clients = {
     NET_HQ: [
-        *[client(_mac("c1", i), f"10.10.10.{100 + i}", 10, f"laptop-{i:02d}") for i in range(12)],
+        *[hq_laptop(i) for i in range(12)],
         client(MAC_CONF_TV, "10.10.10.50", 10, "conference-room-tv"),
+        # Desk phones: MAC authentication bypass is the expected path for these.
+        *[client(_mac("c2", i), f"10.10.20.{100 + i}", 20, f"desk-phone-{i:02d}",
+                 switch=HQ_CORE, port=i + 1, manufacturer="Cisco") for i in range(2)],
         # 50 guests in a pool of 54.
-        *[client(_mac("c3", i), f"10.10.30.{201 + i}", 30, f"guest-{i:02d}") for i in range(50)],
+        *[hq_guest(i) for i in range(50)],
     ],
     NET_EAST: [
-        *[client(_mac("e1", i), f"10.20.10.{100 + i}", 10, f"dispatch-{i:02d}") for i in range(6)],
+        *[client(_mac("e1", i), f"10.20.10.{100 + i}", 10, f"dispatch-{i:02d}",
+                 switch=EAST_CORE if i < 3 else None, port=i + 1 if i < 3 else None,
+                 user=f"dispatch{i:02d}@cvl.example" if i < 3 else None,
+                 os="Windows 11", manufacturer="HP") for i in range(6)],
         client(MAC_UPS, "10.20.1.87", 1, "ups-mgmt"),
         *[client(_mac("e2", i), f"10.20.20.{100 + i}", 20, f"phone-{i:02d}") for i in range(4)],
     ],
     NET_WEST: [
-        *[client(_mac("w1", i), f"10.30.10.{100 + i}", 10, f"dispatch-{i:02d}") for i in range(4)],
+        *[client(_mac("w1", i), f"10.30.10.{100 + i}", 10, f"dispatch-{i:02d}",
+                 switch=WEST_CORE if i < 2 else None, port=i + 1 if i < 2 else None,
+                 os="Windows 11", manufacturer="HP") for i in range(4)],
         # A consumer router plugged in at the wash bay, handing out its own
-        # 192.168.1.0/24. The PC behind it works; nobody can find it.
-        client("00:18:0a:dd:00:01", "192.168.1.50", 10, "Wash bay PC"),
+        # 192.168.1.0/24. The PC behind it works; nobody can find it. The port
+        # is open, so nothing stopped it.
+        client("00:18:0a:dd:00:01", "192.168.1.50", 10, "Wash bay PC",
+               switch=WEST_IDF, port=6, os="Windows 10"),
     ],
 }
 
@@ -495,6 +600,7 @@ def main() -> None:
     write("ssids", ssids)
     write("topology", topology)
     write("clients", clients)
+    write("access_policies", access_policies)
     print(f"wrote fixtures to {OUT}")
 
 

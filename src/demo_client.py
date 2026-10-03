@@ -41,6 +41,7 @@ _ROUTES = [
     (r"/networks/([^/]+)/wireless/ssids", "ssids", 1),
     (r"/networks/([^/]+)/topology/linkLayer", "topology", 1),
     (r"/networks/([^/]+)/clients", "clients", 1),
+    (r"/networks/([^/]+)/switch/accessPolicies", "access_policies", 1),
 ]
 
 

@@ -62,6 +62,7 @@ CAT_FIREWALL = "firewall"
 CAT_SSID = "ssid"
 CAT_FIRMWARE = "firmware"
 CAT_IPAM = "ipam"
+CAT_NAC = "nac"
 
 CATEGORY_LABELS = {
     CAT_VLAN_TRUNK: "VLAN / 802.1Q trunk",
@@ -69,6 +70,7 @@ CATEGORY_LABELS = {
     CAT_SSID: "Wireless SSID",
     CAT_FIRMWARE: "Firmware",
     CAT_IPAM: "Address space (IPAM)",
+    CAT_NAC: "802.1X / NAC",
 }
 
 

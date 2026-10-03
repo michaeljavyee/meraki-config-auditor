@@ -23,7 +23,7 @@ MANAGED_ATTRS: Dict[str, List[str]] = {
     "appliance_vlans": ["name", "subnet", "applianceIp"],
     "switch_ports": [
         "name", "enabled", "type", "vlan", "voiceVlan", "allowedVlans", "tags",
-        "poeEnabled", "rstpEnabled", "stpGuard", "accessPolicyType",
+        "poeEnabled", "rstpEnabled", "stpGuard", "accessPolicyType", "accessPolicyNumber",
     ],
     "ssids": [
         "name", "enabled", "authMode", "encryptionMode", "wpaEncryptionMode",

@@ -1,0 +1,67 @@
+{
+  "L_100000000000000001": [
+    {
+      "accessPolicyNumber": "1",
+      "name": "Corp 802.1X",
+      "accessPolicyType": "Hybrid authentication",
+      "hostMode": "Multi-Domain",
+      "radiusServers": [
+        {
+          "host": "10.10.1.10",
+          "port": 1812
+        },
+        {
+          "host": "10.10.1.11",
+          "port": 1812
+        }
+      ],
+      "radiusAccountingEnabled": true,
+      "radiusCoaSupportEnabled": true,
+      "guestVlanId": 30,
+      "radius": {
+        "criticalAuth": {
+          "dataVlanId": 10,
+          "voiceVlanId": 20,
+          "suspendPortBounce": false
+        },
+        "failedAuthVlanId": 30,
+        "reAuthenticationInterval": 3600
+      },
+      "dot1x": {
+        "controlDirection": "both"
+      },
+      "voiceVlanClients": true
+    }
+  ],
+  "L_100000000000000002": [
+    {
+      "accessPolicyNumber": "1",
+      "name": "Dispatch 802.1X",
+      "accessPolicyType": "802.1x",
+      "hostMode": "Multi-Host",
+      "radiusServers": [
+        {
+          "host": "10.10.1.10",
+          "port": 1812
+        }
+      ],
+      "radiusAccountingEnabled": false,
+      "radiusCoaSupportEnabled": false,
+      "guestVlanId": null,
+      "radius": {
+        "criticalAuth": {
+          "dataVlanId": null,
+          "voiceVlanId": null,
+          "suspendPortBounce": false
+        },
+        "failedAuthVlanId": null,
+        "reAuthenticationInterval": null
+      },
+      "dot1x": {
+        "controlDirection": "both"
+      },
+      "voiceVlanClients": true
+    }
+  ],
+  "L_100000000000000003": []
+}
