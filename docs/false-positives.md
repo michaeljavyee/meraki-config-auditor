@@ -81,6 +81,38 @@ different betas of the same number compare equal.
 **"Ahead of baseline" is reported LOW, not ignored.** A deliberate pilot
 will be flagged. Record pilots in the baseline to silence them.
 
+## IPAM check
+
+**Utilisation is measured from clients seen over 7 days, not live leases.**
+Every distinct address used by any client in the window counts, so a guest
+network with heavy churn and a one-day lease reads higher than its real
+concurrent use. The number errs high on purpose: a pool that looks 90% used
+over a week is one bad lunchtime away from 100%. Shorter windows are a
+one-line change (`CLIENT_WINDOW_DAYS` in `src/checks/base.py`).
+
+**"Not seen" isn't "gone".** A reservation is flagged LOW when its device
+hasn't appeared in the window. A device that's only powered on monthly (a
+backup NAS, a DR server) will be flagged. So will devices on a VLAN that is
+currently cut off, such as the cameras behind a trunk the VLAN/trunk check
+flags as CRITICAL; fix connectivity first, then re-run.
+
+**Relayed DHCP isn't assessed.** When a VLAN relays DHCP to another server
+(or doesn't serve DHCP at all), the pool lives outside Dashboard. The report
+says so as a scope limitation rather than computing a meaningless number.
+
+**Cross-site overlap is reported even if the sites will never connect.**
+Overlap between networks is MEDIUM because it's harmless until a VPN joins
+them. If two networks are permanently isolated by design, the finding is
+noise for that pair.
+
+**Clients outside every subnet** are often a rogue DHCP server, but can also be
+a device with a stale static configuration, or a client behind a NAT device
+that Dashboard sees through. The finding names the MAC so the port can be
+traced; it doesn't claim which cause it is.
+
+**IPv6 and DNS are out of scope.** Only IPv4 subnets, pools and reservations
+are reconciled.
+
 ## General
 
 **A clean report means "matches the baseline", not "is secure".** The tool
