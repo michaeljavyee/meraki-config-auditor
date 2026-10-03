@@ -86,6 +86,11 @@ ul.plain li { margin-bottom: 7px; }
 footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
 .empty { color: var(--muted); font-style: italic; padding: 12px 0; }
 .scroll { overflow-x: auto; }
+.bar { display: inline-block; vertical-align: middle; width: 70px; height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; margin-right: 6px; }
+.bar span { display: block; height: 100%; }
+.bar span.critical { background: var(--critical); }
+.bar span.medium { background: var(--medium); }
+.bar span.low { background: var(--low); }
 @media print {
   body { padding-bottom: 0; }
   .wrap { max-width: none; padding: 0 12mm; }
@@ -188,6 +193,41 @@ footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
   </tbody>
 </table>
 </div>
+
+{% if address_space %}
+<h3>Address space <span class="mono">({{ address_space|length }} VLANs)</span></h3>
+<p>Each VLAN's DHCP pool after reserved ranges, fixed reservations and the
+appliance IP are removed, against distinct addresses seen in use by clients in
+the last 7 days. Observed use over a week is an upper bound on concurrent
+leases, so utilisation here errs high.</p>
+<div class="scroll">
+<table>
+  <thead><tr><th>Network</th><th>VLAN</th><th>Subnet</th><th>DHCP</th><th class="num">Reserved</th><th class="num">Fixed</th><th class="num">Pool</th><th class="num">In use</th><th style="min-width:120px">Utilisation</th></tr></thead>
+  <tbody>
+  {% for r in address_space %}
+    <tr>
+      <td>{{ r.network }}</td>
+      <td><strong>{{ r.vlan }}</strong> {{ r.name }}</td>
+      <td class="mono">{{ r.subnet }}</td>
+      <td>{{ 'MX' if r.dhcp == 'Run a DHCP server' else ('relay' if 'Relay' in r.dhcp else r.dhcp) }}</td>
+      <td class="num">{{ r.reserved or '—' }}</td>
+      <td class="num">{{ r.fixed or '—' }}</td>
+      <td class="num">{{ r.pool if r.pool is not none else '—' }}</td>
+      <td class="num">{{ r.in_use }}</td>
+      <td>
+        {% if r.utilisation is not none %}
+        {% set pct = (r.utilisation * 100)|round|int %}
+        {% set tone = 'critical' if pct >= 90 else ('medium' if pct >= 80 else 'low') %}
+        <div class="bar"><span class="{{ tone }}" style="width: {{ [pct, 100]|min }}%"></span></div>
+        <span class="mono">{{ pct }}%</span>
+        {% else %}<span class="mono">n/a</span>{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
 
 <!-- 3 ------------------------------------------------------------------ -->
 <h2>3 &nbsp;&middot;&nbsp; Findings</h2>

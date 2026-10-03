@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from .baseline import Baseline, BaselineError, load_baseline
-from .checks import firewall_drift, firmware_drift, ssid_consistency, vlan_trunks
+from .checks import firewall_drift, firmware_drift, ipam, ssid_consistency, vlan_trunks
 from .checks.base import OrgContext, product_type_of
 from .report import print_terminal, render_html, write_csv, write_inventory_csv
 from .scoring import CRITICAL, HIGH, Finding, InventoryItem, sort_findings
@@ -33,6 +33,7 @@ CHECKS = {
     "firewall": firewall_drift.run,
     "ssids": ssid_consistency.run,
     "firmware": firmware_drift.run,
+    "ipam": ipam.run,
 }
 
 
@@ -196,6 +197,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             findings=findings, inventory=inventory, networks=networks,
             output_path=stem.with_suffix(".html"), org_name=org_name, baseline=baseline,
             source=source, demo=args.demo, scope_limitations=context.scope_limitations,
+            address_space=context.address_space,
         ))
     if args.format in ("csv", "all"):
         written.append(write_csv(findings, stem.with_suffix(".csv")))

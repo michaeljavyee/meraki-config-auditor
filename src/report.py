@@ -41,10 +41,15 @@ SCOPE_COVERED = [
     "MX L3 outbound firewall rules against the baseline policy, including rule order and shadowing",
     "SSID authentication, encryption, VLAN and radio settings against the baseline",
     "Running firmware per device against the baseline target for its product type",
+    "VLAN subnets for overlap within and between networks",
+    "DHCP pools against reserved ranges, fixed reservations and clients seen in the last 7 days",
+    "Fixed reservations that can't be served, are held by another device, or are for devices no longer seen",
+    "Clients using addresses outside every subnet in their network",
 ]
 
 SCOPE_EXCLUDED = [
     "Switch access-port configuration drift (port security, 802.1X, STP guard) - planned",
+    "DNS, IPv6, and address space managed outside Meraki (external DHCP servers, data centre)",
     "Orphaned or unused configuration objects (policy objects, group policies) - planned",
     "Inbound firewall rules, port forwarding, 1:1 NAT, L7 and content filtering",
     "Site-to-site VPN, SD-WAN and routing configuration",
@@ -64,6 +69,7 @@ def render_html(
     source: str,
     demo: bool = False,
     scope_limitations: Optional[List[str]] = None,
+    address_space: Optional[List[Dict[str, Any]]] = None,
 ) -> Path:
     """Render the self-contained HTML report.
 
@@ -98,6 +104,7 @@ def render_html(
         scope_covered=SCOPE_COVERED,
         scope_excluded=SCOPE_EXCLUDED,
         scope_limitations=scope_limitations or [],
+        address_space=address_space or [],
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(rendered, encoding="utf-8")
